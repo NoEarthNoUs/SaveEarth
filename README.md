@@ -32,19 +32,19 @@ Save Earth와 함께 지구를 지켜요! 🙌🌏💪
 
 ## 🤓 기획 및 설계
 
-- 📊 [프로젝트 칸반보드](https://github.com/NoEarthNoUs/SaveEarth/projects/1){:target="\_blank"}
+- 📊 [프로젝트 칸반보드](https://github.com/NoEarthNoUs/SaveEarth/projects/1){:target="_blank"}
 
-- 🛠 [기능 명세서](https://www.notion.so/97e576e02536418eae57bfc1be4a39bf){:target="\_blank"}
+- 🛠 [기능 명세서](https://www.notion.so/97e576e02536418eae57bfc1be4a39bf){:target="_blank"}
 
-- 🖥 [페이지 기획서](https://whimsical.com/save-earth-BrFAQVbkTEFTLZ5cssXUrz){:target="\_blank"}
+- 🖥 [페이지 기획서](https://whimsical.com/save-earth-BrFAQVbkTEFTLZ5cssXUrz){:target="_blank"}
   ![페이지 기획서](https://user-images.githubusercontent.com/65386533/113666610-7a1a7500-96ea-11eb-88bf-851f0cc5f7f1.png)
 
-- 📑 [API 설계](https://www.notion.so/API-42dc65b1ac6c40a08d0645ebc86b90c8){:target="\_blank"}
+- 📑 [API 설계](https://www.notion.so/API-42dc65b1ac6c40a08d0645ebc86b90c8){:target="_blank"}
 
-- 💾 [DB 명세서](https://www.notion.so/DB-47c57df87f564ccfb291cdc99f5ad9a2){:target="\_blank"}
+- 💾 [DB 명세서](https://www.notion.so/DB-47c57df87f564ccfb291cdc99f5ad9a2){:target="_blank"}
   ![DB 설계](https://user-images.githubusercontent.com/65386533/113666875-ea28fb00-96ea-11eb-9c6f-f6a62f5bb622.png)
 
 ## 👩🏻‍🤝‍👩🏻👩‍💻 Save Earth 팀
 
-- Front-End Developer👩‍💻 [강보현](https://github.com/bohyunkang){:target="\_blank"}
-- Back-End Developer👩‍💻 [김환희](https://github.com/hwana){:target="\_blank"}
+- Front-End Developer👩‍💻 [강보현](https://github.com/bohyunkang){:target="_blank"}
+- Back-End Developer👩‍💻 [김환희](https://github.com/hwana){:target="_blank"}
