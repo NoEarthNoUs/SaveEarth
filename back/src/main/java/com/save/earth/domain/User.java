@@ -15,9 +15,8 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String email;
@@ -28,13 +27,25 @@ public class User {
     @Column
     private String imgUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-
     @OneToMany(mappedBy = "userLike")
     private List<Like> likeList = new ArrayList<Like>();
 
     @OneToMany(mappedBy = "userComment")
     private List<Comment> commentList = new ArrayList<Comment>();
+
+    @Builder
+    public User(String id, String email, String name, String imgUrl) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.imgUrl = imgUrl;
+    }
+
+    public User update(String name, String picture){
+        this.name = name;
+        this.email = email;
+
+        return this;
+    }
+
 }
