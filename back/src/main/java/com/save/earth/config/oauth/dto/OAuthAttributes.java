@@ -25,10 +25,6 @@ public class OAuthAttributes {
     }
 
     public static OAuthAttributes of(String userNameAttributeName, Map<String, Object> attributes) {
-        return ofGoogle(userNameAttributeName, attributes);
-    }
-
-    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .sub((String) attributes.get("sub"))
                 .name((String) attributes.get("name"))
