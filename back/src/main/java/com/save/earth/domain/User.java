@@ -1,6 +1,5 @@
 package com.save.earth.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,6 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long id;
 
@@ -27,10 +25,6 @@ public class User {
 
     @Column
     private String imgUrl;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
 
     @OneToMany(mappedBy = "userLike")
     private List<Like> likeList = new ArrayList<Like>();
