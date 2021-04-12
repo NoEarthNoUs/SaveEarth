@@ -1,5 +1,6 @@
 package com.save.earth.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,10 +18,10 @@ public class User {
     @Column(name = "USER_ID")
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull
     private String email;
 
-    @Column(nullable = false)
+    @NotNull
     private String name;
 
     @Column
