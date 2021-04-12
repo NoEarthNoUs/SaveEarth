@@ -8,6 +8,10 @@ const Wrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
+<<<<<<< Updated upstream
+=======
+  margin-top: ${(props) => props.theme.marginTop2};
+>>>>>>> Stashed changes
 
   > .left-side {
     display: flex;
