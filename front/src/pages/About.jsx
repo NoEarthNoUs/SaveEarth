@@ -13,12 +13,12 @@ const Wrapper = styled.div`
       padding: 50px 0;
 
       > h1 {
-        font-size: 85px;
+        font-size: ${(props) => props.theme.pageTitle};
         font-weight: bold;
       }
       > p {
         font-size: 20px;
-        margin-top: 50px;
+        margin-top: ${(props) => props.theme.marginTop2};
       }
     }
   }
