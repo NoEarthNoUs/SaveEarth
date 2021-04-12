@@ -1,5 +1,6 @@
 package com.save.earth.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +17,7 @@ public class Comment extends BaseTimeEntity{
     @Column(name = "COMMENT_ID")
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull
     private String contents;
 
     @ManyToOne(fetch = FetchType.LAZY)

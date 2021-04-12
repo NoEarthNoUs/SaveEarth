@@ -1,5 +1,6 @@
 package com.save.earth.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,9 +16,9 @@ public class Story extends CreateTimeEntity{
     @Column(name = "STORY_ID")
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull
     private String title;
 
-    @Column(nullable = false)
+    @NotNull
     private String contents;
 }
