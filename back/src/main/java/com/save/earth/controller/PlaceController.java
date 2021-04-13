@@ -1,5 +1,6 @@
 package com.save.earth.controller;
 
+import com.save.earth.dto.place.PlaceDetailResponseDto;
 import com.save.earth.dto.place.PlaceResponseDto;
 import com.save.earth.dto.place.PlaceSaveRequestDto;
 import com.save.earth.service.PlaceService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,5 +28,10 @@ public class PlaceController {
     @GetMapping("/api/place")
     public List<PlaceResponseDto> placeList(@PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC, size = 12) Pageable pageable){
         return placeService.findAllPlace(pageable);
+    }
+
+    @GetMapping("/api/place/{placeId}")
+    public Optional<PlaceDetailResponseDto> placeDetailList(@PathVariable(value = "placeId") Long id){
+        return placeService.findById(id);
     }
 }
