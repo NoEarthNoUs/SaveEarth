@@ -1,6 +1,7 @@
 package com.save.earth.service;
 
 import com.save.earth.domain.Place;
+import com.save.earth.dto.PlaceResponseDto;
 import com.save.earth.dto.PlaceSaveRequestDto;
 import com.save.earth.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -30,7 +32,7 @@ public class PlaceService {
         }
     }
 
-    public List<Place> findAllPlace(){
-        return placeRepository.findAll();
+    public List<PlaceResponseDto> findAllPlace(){
+        return placeRepository.findAll().stream().map(PlaceResponseDto::new).collect(Collectors.toList());
     }
 }

@@ -14,29 +14,21 @@ import javax.persistence.Column;
 public class PlaceSaveRequestDto {
 
     private String name;
-
     private String address;
-
     private String imgUrl;
-
     private String category;
-
     private String contents;
-
     private int allMenuVegan;
 
-    @Builder
-    public PlaceSaveRequestDto(String name, String address, String imgUrl, String category, String contents, int allMenuVegan) {
-        this.name = name;
-        this.address = address;
-        this.imgUrl = imgUrl;
-        this.category = category;
-        this.contents = contents;
-        this.allMenuVegan = allMenuVegan;
-    }
-
     public Place toEntity(){
-        return Place.builder().name(name).address(address).imgUrl(imgUrl).category(category).contents(contents).allMenuVegan(allMenuVegan).build();
+        return Place.builder()
+                .name(name)
+                .address(address)
+                .imgUrl(imgUrl)
+                .category(category)
+                .contents(contents)
+                .allMenuVegan(allMenuVegan)
+                .build();
     }
 
 }

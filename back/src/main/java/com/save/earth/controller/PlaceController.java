@@ -1,6 +1,7 @@
 package com.save.earth.controller;
 
 import com.save.earth.domain.Place;
+import com.save.earth.dto.PlaceResponseDto;
 import com.save.earth.dto.PlaceSaveRequestDto;
 import com.save.earth.service.PlaceService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class PlaceController {
     }
 
     @GetMapping("/api/place")
-    public List<Place> placeList(){
+    public List<PlaceResponseDto> placeList(){
         return placeService.findAllPlace();
     }
 }
