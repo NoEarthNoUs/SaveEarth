@@ -21,4 +21,7 @@ public class Story extends CreateTimeEntity{
 
     @NotNull
     private String contents;
+
+    @NotNull
+    private String imgUrl;
 }
