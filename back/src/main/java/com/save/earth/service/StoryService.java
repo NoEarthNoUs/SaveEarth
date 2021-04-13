@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,5 +20,9 @@ public class StoryService {
 
     public List<StoryResponseDto> findAllStory(Pageable pageable){
         return storyRepository.findAll(pageable).stream().map(StoryResponseDto::new).collect(Collectors.toList());
+    }
+
+    public Optional<StoryResponseDto> findById(Long id){
+        return storyRepository.findById(id).map(StoryResponseDto::new);
     }
 }
