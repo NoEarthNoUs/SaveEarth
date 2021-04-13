@@ -28,7 +28,7 @@ public class PlaceController {
     }
 
     @GetMapping("/api/place")
-    public List<PlaceResponseDto> placeList(@PageableDefault(sort = { "name" }, direction = Sort.Direction.DESC, size = 12) Pageable pageable){
+    public List<PlaceResponseDto> placeList(@PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC, size = 12) Pageable pageable){
         return placeService.findAllPlace(pageable);
     }
 }
