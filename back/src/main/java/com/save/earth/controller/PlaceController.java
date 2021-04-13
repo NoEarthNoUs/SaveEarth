@@ -5,6 +5,9 @@ import com.save.earth.dto.PlaceResponseDto;
 import com.save.earth.dto.PlaceSaveRequestDto;
 import com.save.earth.service.PlaceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +28,7 @@ public class PlaceController {
     }
 
     @GetMapping("/api/place")
-    public List<PlaceResponseDto> placeList(){
-        return placeService.findAllPlace();
+    public List<PlaceResponseDto> placeList(@PageableDefault(sort = { "name" }, direction = Sort.Direction.DESC, size = 12) Pageable pageable){
+        return placeService.findAllPlace(pageable);
     }
 }

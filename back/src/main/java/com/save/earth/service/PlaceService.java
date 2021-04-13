@@ -5,6 +5,7 @@ import com.save.earth.dto.PlaceResponseDto;
 import com.save.earth.dto.PlaceSaveRequestDto;
 import com.save.earth.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ public class PlaceService {
         }
     }
 
-    public List<PlaceResponseDto> findAllPlace(){
-        return placeRepository.findAll().stream().map(PlaceResponseDto::new).collect(Collectors.toList());
+    public List<PlaceResponseDto> findAllPlace(Pageable pageable){
+        return placeRepository.findAll(pageable).stream().map(PlaceResponseDto::new).collect(Collectors.toList());
     }
 }
