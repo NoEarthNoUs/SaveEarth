@@ -1,8 +1,7 @@
 package com.save.earth.service;
 
-import com.save.earth.domain.Place;
-import com.save.earth.dto.PlaceResponseDto;
-import com.save.earth.dto.PlaceSaveRequestDto;
+import com.save.earth.dto.place.PlaceResponseDto;
+import com.save.earth.dto.place.PlaceSaveRequestDto;
 import com.save.earth.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
