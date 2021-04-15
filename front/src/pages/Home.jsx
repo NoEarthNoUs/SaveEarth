@@ -1,6 +1,5 @@
 import React from 'react';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
+import { Header, Footer } from '../components/common';
 import Main from '../components/home/Main';
 
 const Home = () => {

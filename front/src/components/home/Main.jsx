@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import PlaceFiltering from './PlaceFiltering';
+import PlaceList from '../place/PlaceList';
+import CategoryNav from './CategoryNav';
+import { btnStyle } from '../../styles/mixins';
 
 const Wrapper = styled.div`
   border: 1px solid green;
 
   > .intro {
     border: 1px solid blue;
-    margin-top: ${(props) => props.theme.marginTop1};
+    margin-top: ${(props) => props.theme.margin1};
 
     > h1 {
       border: 1px solid red;
@@ -18,22 +20,22 @@ const Wrapper = styled.div`
     }
     > .hero-title {
       border: 1px solid indigo;
-      margin-top: ${(props) => props.theme.marginTop2};
+      margin-top: ${(props) => props.theme.margin2};
       font-size: 30px;
       text-align: center;
     }
   }
 
-  > .place {
+  > .place-overview {
     > .more-btn {
       text-align: center;
-      margin-top: ${(props) => props.theme.marginTop2};
+      margin-top: ${(props) => props.theme.margin2};
     }
   }
 
   > .place-share {
     border: 1px solid indigo;
-    margin-top: ${(props) => props.theme.marginTop1};
+    margin-top: ${(props) => props.theme.margin1};
 
     > h3 {
       font-size: 40px;
@@ -43,8 +45,12 @@ const Wrapper = styled.div`
 
     > .upload-btn {
       text-align: center;
-      margin-top: ${(props) => props.theme.marginTop2};
+      margin-top: ${(props) => props.theme.margin2};
     }
+  }
+
+  button {
+    ${btnStyle};
   }
 `;
 const Main = () => {
@@ -57,8 +63,9 @@ const Main = () => {
           친환경은 더 이상 선택이 아니다
         </h2>
       </div>
-      <div className='place'>
-        <PlaceFiltering />
+      <div className='place-overview'>
+        <CategoryNav />
+        <PlaceList />
         <div className='more-btn'>
           <Link to='/place'>
             <button>더 알아보기</button>
