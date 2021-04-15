@@ -4,7 +4,7 @@ import StoryData from './StoryData';
 
 const Wrapper = styled.div`
   border: 1px solid blue;
-  margin-top: ${(props) => props.theme.marginTop2};
+  margin-top: ${(props) => props.theme.margin2};
   display: grid;
   justify-content: center;
   grid-template-columns: 300px 300px 300px;
@@ -18,7 +18,8 @@ const StoryList = () => {
       title: '스토리 제목',
       imgUrl:
         'http://www.shinailbo.co.kr/news/photo/201911/1221389_473186_3253.jpg',
-      contents: '스토리 내용은 가나다라마바사, 아자차카타파하입니다.',
+      contents:
+        '스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.스토리 내용은 가나다라마바사, 아자차카타파하입니다.',
       createDateTime: '2019/8/1',
     },
     {
@@ -71,6 +72,7 @@ const StoryList = () => {
           title={data.title}
           img={data.imgUrl}
           contents={data.contents}
+          createDateTime={data.createDateTime}
         />
       ))}
     </Wrapper>
