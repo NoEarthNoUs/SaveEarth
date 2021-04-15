@@ -8,7 +8,7 @@ const Wrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: ${(props) => props.theme.marginTop2};
+  margin-top: ${(props) => props.theme.margin1};
 
   > .left-side {
     display: flex;

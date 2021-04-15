@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Nav = styled.div`
+const Nav = styled.nav`
   > .menu {
     float: left;
 
     > li {
       float: left;
-      font-size: 18px;
+      font-size: ${(props) => props.theme.HeaderFontSize};
     }
     > li + li {
-      margin-left: 100px;
+      margin-left: ${(props) => props.theme.margin1};
     }
   }
 `;

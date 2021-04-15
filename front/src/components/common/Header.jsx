@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from './Logo';
-import Menu from './Menu';
+import { Logo, Menu } from './';
+import { btnStyle } from '../../styles/mixins';
 
 const Wrapper = styled.header`
   border: 1px solid red;
@@ -14,9 +14,13 @@ const Wrapper = styled.header`
     display: flex;
     align-items: center;
 
-    > .login > button {
-      font-size: 18px;
-      margin-left: 100px;
+    > .login {
+      margin-left: ${(props) => props.theme.margin1};
+
+      > button {
+        ${btnStyle};
+        font-size: ${(props) => props.theme.HeaderFontSize};
+      }
     }
   }
 `;
