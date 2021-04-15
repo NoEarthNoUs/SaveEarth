@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Home, About, Place, Story, StoryDetail, PlaceDetail } from './pages';
 import GlobalStyles from './styles/GlobalStyles';
@@ -21,5 +21,5 @@ function App() {
       </ThemeProvider>
     </div>
   );
-
+}
 export default App;
