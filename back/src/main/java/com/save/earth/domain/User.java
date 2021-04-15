@@ -1,6 +1,7 @@
 package com.save.earth.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +17,7 @@ public class User {
 
     @Id
     @Column(name = "USER_ID")
-    private Long id;
+    private String id;
 
     @NotNull
     private String email;
@@ -32,4 +33,12 @@ public class User {
 
     @OneToMany(mappedBy = "userComment")
     private List<Comment> commentList = new ArrayList<Comment>();
+
+    @Builder
+    public User(String id, String email, String name, String imgUrl) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.imgUrl = imgUrl;
+    }
 }
