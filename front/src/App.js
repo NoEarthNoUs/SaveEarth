@@ -10,15 +10,16 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Route exact path='/' component={Home} />
-        <Route path='/about' component={About} />
-        {/* <Route path='/place' component={Place} /> */}
-        <Route path='/story' component={Story} />
-        {/* <Route exact path='/place/detail/:id' component={PlaceDetail} /> */}
-        <Route exact path='/story/detail/:id' component={StoryDetail} />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/place' component={Place} />
+          <Route exact path='/place/:id' component={PlaceDetail} />
+          <Route exact path='/story' component={Story} />
+          <Route exact path='/story/:id' component={StoryDetail} />
+        </Switch>
       </ThemeProvider>
     </div>
   );
-}
 
 export default App;
