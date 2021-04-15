@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
+import { Header, Footer } from '../components/common';
+import { subPageTitle } from '../styles/mixins';
 
 const Wrapper = styled.div`
   > div {
@@ -10,15 +10,12 @@ const Wrapper = styled.div`
     align-items: center;
 
     > div {
-      padding: 50px 0;
-
       > h1 {
-        font-size: ${(props) => props.theme.pageTitle};
-        font-weight: bold;
+        ${subPageTitle};
       }
       > p {
         font-size: 20px;
-        margin-top: ${(props) => props.theme.marginTop2};
+        margin-top: ${(props) => props.theme.margin2};
       }
     }
   }

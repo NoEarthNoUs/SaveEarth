@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
+import { Header, Footer } from '../components/common';
 import StoryList from '../components/story/StoryList';
+import { subPageTitle } from '../styles/mixins';
 
 const Wrapper = styled.div`
   border: 1px solid red;
@@ -11,9 +11,7 @@ const Wrapper = styled.div`
     text-align: center;
 
     > h1 {
-      margin-top: ${(props) => props.theme.marginTop2};
-      font-size: ${(props) => props.theme.pageTitle};
-      font-weight: bold;
+      ${subPageTitle};
     }
   }
 `;
