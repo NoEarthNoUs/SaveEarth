@@ -9,11 +9,8 @@ const GlobalStyles = createGlobalStyle`
   }
   button{
     background: inherit;
-    background-color: ${(props) => props.theme.btnColor};
     border:none;
-    border-radius: 20px;
     box-shadow:none;
-    padding: 8px 20px;
     overflow:visible;
     cursor:pointer;
     outline:none;
