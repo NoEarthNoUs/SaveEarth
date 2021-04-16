@@ -28,6 +28,7 @@ public class Comment extends BaseTimeEntity{
     @JoinColumn(name = "PLACE_ID")
     private Place placeComment;
 
-    @Column(columnDefinition = "integer default 0")
-    private int delYn;
+    public void changeContents(String contents){
+        this.contents = contents;
+    }
 }

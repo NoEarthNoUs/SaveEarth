@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @Column(name = "USER_ID")
-    private Long id;
+    private String id;
 
     @NotNull
     private String email;

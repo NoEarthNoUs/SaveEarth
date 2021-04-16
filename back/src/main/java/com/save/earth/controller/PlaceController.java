@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +30,7 @@ public class PlaceController {
     }
 
     @GetMapping("/api/place/{placeId}")
-    public Optional<PlaceDetailResponseDto> placeDetailList(@PathVariable(value = "placeId") Long id){
+    public List<PlaceDetailResponseDto> placeDetailList(@PathVariable(value = "placeId") Long id){
         return placeService.findById(id);
     }
 }
