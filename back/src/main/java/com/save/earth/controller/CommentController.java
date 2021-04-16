@@ -1,14 +1,9 @@
 package com.save.earth.controller;
 
 import com.save.earth.dto.comment.CommentResponseDto;
-import com.save.earth.dto.comment.CommentSaveRequestDto;
 import com.save.earth.dto.comment.CommentUpdateRequestDto;
-import com.save.earth.dto.place.PlaceResponseDto;
 import com.save.earth.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,11 +30,8 @@ public class CommentController {
         commentService.deleteComment(id);
     }
 
-//    @GetMapping("/comment/{placeId}")
-//    public List<CommentResponseDto> commentList(@PathVariable(value = "placeId") Long placeId,
-//                                              @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable){
-//        return commentService.findAllComment(placeId, pageable);
-//    }
-
-
+    @GetMapping("/comment/{placeId}")
+    public List<CommentResponseDto> commentList(@PathVariable(value = "placeId") Long placeId){
+        return commentService.selectComment(placeId);
+    }
 }

@@ -3,8 +3,7 @@ package com.save.earth.service;
 import com.save.earth.dto.place.PlaceDetailResponseDto;
 import com.save.earth.dto.place.PlaceResponseDto;
 import com.save.earth.dto.place.PlaceSaveRequestDto;
-import com.save.earth.repository.PlaceRepository;
-import com.save.earth.repository.PlaceRepositoryCustom;
+import com.save.earth.repository.place.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlaceService {
     private final PlaceRepository placeRepository;
-    private final PlaceRepositoryCustom placeRepositoryCustom;
 
     public void savePlace(PlaceSaveRequestDto placeSaveRequestDto, MultipartFile file){
         try {
@@ -39,7 +38,7 @@ public class PlaceService {
         return placeRepository.findAll(pageable).stream().map(PlaceResponseDto::new).collect(Collectors.toList());
     }
 
-    public List<PlaceDetailResponseDto> findById(Long id){
-        return placeRepositoryCustom.findByIdWithComment(id).stream().map(PlaceDetailResponseDto::new).collect(Collectors.toList());
+    public Optional<PlaceDetailResponseDto> findById(Long id){
+        return placeRepository.findById(id).map(PlaceDetailResponseDto::new);
     }
 }

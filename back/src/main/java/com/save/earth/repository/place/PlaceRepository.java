@@ -1,4 +1,4 @@
-package com.save.earth.repository;
+package com.save.earth.repository.place;
 
 
 import com.save.earth.domain.Place;
