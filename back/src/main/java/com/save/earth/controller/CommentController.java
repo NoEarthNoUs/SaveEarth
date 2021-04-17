@@ -16,7 +16,7 @@ public class CommentController {
     private final CommentService commentService;
 
 //    @PostMapping("/comment")
-//    public CommentSaveRequestDto saveComment(){
+//    public void saveComment(CommentSaveRequestDto commentSaveRequestDto){
 //
 //    }
 

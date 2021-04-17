@@ -19,8 +19,9 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final CommentRepositoryCustom commentRepositoryCustom;
 
-//    public List<CommentResponseDto> findAllComment(Long placeId, Pageable pageable){
-//        return placeRepository.findAllById(placeId, pageable).stream().map(CommentResponseDto::new).collect(Collectors.toList());
+//    public void saveComment(CommentSaveRequestDto commentSaveRequestDto) {
+//
+//        commentRepository.save(commentSaveRequestDto.toEntity());
 //    }
 
     public void deleteComment(Long id){

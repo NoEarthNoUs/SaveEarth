@@ -1,12 +1,9 @@
 package com.save.earth.dto.place;
 
 import com.save.earth.domain.Place;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Column;
 
 @Getter
 @Setter
@@ -30,5 +27,4 @@ public class PlaceSaveRequestDto {
                 .allMenuVegan(allMenuVegan)
                 .build();
     }
-
 }
