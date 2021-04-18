@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal, GoogleButton } from '../components/common';
-import { btnStyle } from '../styles/mixins';
-import SaveEarthLogo from '../images/logo192.png';
+import Modal from '../common/Modal';
+import GoogleButton from './GoogleButton';
+import { btnStyle } from '../../styles/mixins';
+import SaveEarthLogo from '../../images/logo192.png';
 
 const Wrapper = styled.div`
   margin-left: ${(props) => props.theme.margin1};
-  border: 1px solid red;
 
   > button {
     ${btnStyle};

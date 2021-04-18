@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Logo, Menu } from './';
-import Login from '../../pages/Login';
+import Login from '../login/Login';
 
 const Wrapper = styled.header`
   border: 1px solid red;
