@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import PlaceList from '../place/PlaceList';
+import { PlaceList, PlaceUpload } from '../place';
 import CategoryNav from './CategoryNav';
 import { btnStyle } from '../../styles/mixins';
 
@@ -42,11 +42,6 @@ const Wrapper = styled.div`
       font-weight: bold;
       text-align: center;
     }
-
-    > .upload-btn {
-      text-align: center;
-      margin-top: ${(props) => props.theme.margin2};
-    }
   }
 
   button {
@@ -78,11 +73,7 @@ const Main = () => {
           <br />
           Save Earth에도 공유해주세요! 🙌
         </h3>
-        <div className='upload-btn'>
-          <Link to='/place/upload'>
-            <button>등록하러 가기</button>
-          </Link>
-        </div>
+        <PlaceUpload />
       </div>
     </Wrapper>
   );
