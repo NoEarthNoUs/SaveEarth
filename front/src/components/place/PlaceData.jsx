@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { btnStyle } from '../../styles/mixins';
+import { tagStyle } from '../../styles/mixins';
 
 const Wrapper = styled.div`
   .place-data {
@@ -15,10 +15,9 @@ const Wrapper = styled.div`
 
     > .place-desc {
       margin-top: ${(props) => props.theme.margin3};
+
       > .place-tag {
-        ${btnStyle};
-        font-size: 12px;
-        padding: 4px 10px;
+        ${tagStyle};
       }
       > h4 {
         border: 1px solid blue;

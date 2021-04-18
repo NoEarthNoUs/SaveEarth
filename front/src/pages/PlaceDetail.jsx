@@ -1,48 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header, Footer } from '../components/common';
+import CommentInput from '../components/comment/CommentInput';
+import CommentView from '../components/comment/CommentView';
+import { tagStyle } from '../styles/mixins';
 
 const Wrapper = styled.div`
   border: 1px solid red;
 
-  > .place-inner {
-    border: 1px solid blue;
-    margin-top: ${(props) => props.theme.margin1};
-    display: flex;
-    justify-content: center;
+  strong {
+    font-weight: bold;
+  }
 
-    > .place-desc {
-      /* border: 1px solid green; */
-      margin-left: 50px;
+  .place-detail-wrap {
+    padding: 0 250px;
 
-      > .place-category {
-        /* border: 1px solid blue; */
-      }
-      > .place-name {
-        /* border: 1px solid green; */
-        font-weight: bold;
-        font-size: ${(props) => props.theme.detailTitle};
+    .place-inner {
+      border: 1px solid blue;
+      margin-top: ${(props) => props.theme.margin1};
+      display: flex;
+      justify-content: space-between;
 
-        &:after {
-          content: '';
-          display: block;
-          height: 1px;
-          width: 65px;
-          background: ${(props) => props.theme.subColor};
+      > .place-desc {
+        border: 1px solid green;
+
+        > .place-category {
+          ${tagStyle}
+        }
+        > .place-name {
+          font-weight: bold;
+          font-size: ${(props) => props.theme.detailTitle};
+
+          &:after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 65px;
+            background: ${(props) => props.theme.subColor};
+            margin-top: ${(props) => props.theme.margin3};
+          }
+        }
+        > .place-info-box {
+          margin-top: ${(props) => props.theme.margin3};
+        }
+        > .map-thumbnail {
           margin-top: ${(props) => props.theme.margin3};
         }
       }
-      > .place-info-box {
-        /* border: 1px solid yellow; */
-        margin-top: ${(props) => props.theme.margin3};
-      }
-      > .map-thumbnail {
-        /* border: 1px solid pink; */
-        margin-top: ${(props) => props.theme.margin3};
-      }
-      strong {
-        font-weight: bold;
-      }
+    }
+
+    .comment-inner {
+      border: 1px solid red;
+      margin-top: ${(props) => props.theme.margin2};
     }
   }
 `;
@@ -52,18 +61,25 @@ const PlaceDetail = ({ location }) => {
   return (
     <Wrapper>
       <Header />
-      <div className='place-inner'>
-        <img src={place.img} alt={place.name} title={place.name}></img>
-        <div className='place-desc'>
-          <span class='place-category'>{place.category}</span>
-          <h1 class='place-name'>{place.name}</h1>
-          <div className='place-info-box'>
-            <strong className='place-info'>특징</strong>
-            <p>{place.contents}</p>
-            <strong className='place-info'>주소</strong>
-            <p>{place.address}</p>
+      <div className='place-detail-wrap'>
+        <div className='place-inner'>
+          <img src={place.img} alt={place.name} title={place.name}></img>
+          <div className='place-desc'>
+            <span className='place-category'>{place.category}</span>
+            <h1 className='place-name'>{place.name}</h1>
+            <div className='place-info-box'>
+              <strong className='place-info'>특징</strong>
+              <p>{place.contents}</p>
+              <strong className='place-info'>주소</strong>
+              <p>{place.address}</p>
+            </div>
+            <div className='map-thumbnail'>카카오 맵 미리보기</div>
           </div>
-          <div className='map-thumbnail'>카카오 맵 미리보기</div>
+        </div>
+        <div className='comment-inner'>
+          <strong>장소 한줄평 남기기</strong>
+          <CommentInput />
+          <CommentView />
         </div>
       </div>
       <Footer />
