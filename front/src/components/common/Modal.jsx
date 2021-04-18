@@ -18,7 +18,7 @@ const Wrapper = styled.div`
       height: 600px;
       margin: 0 auto;
       border-radius: 30px;
-      background-color: #dfe6e9;
+      background-color: ${(props) => props.theme.bgColor};
       position: relative;
 
       > .close {

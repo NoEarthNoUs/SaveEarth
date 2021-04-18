@@ -13,10 +13,11 @@ const Wrapper = styled.div`
     > input {
       border: 1px solid red;
       width: 90%;
-      font-size: 20px;
+      font-size: ${(props) => props.theme.subTitle};
+      background-color: ${(props) => props.theme.bgColor};
     }
     > button {
-      ${btnStyle}
+      ${btnStyle};
       border: 1px solid red;
     }
   }
