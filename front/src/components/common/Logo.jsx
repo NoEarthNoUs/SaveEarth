@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const LogoEmoji = styled.div`
-  font-size: 50px;
+  font-size: ${(props) => props.theme.detailTitle};
 `;
 const Logo = () => {
   return (
