@@ -1,5 +1,5 @@
 const theme = {
-  mainColor: '#0abde3',
+  mainColor: '#88C9F9',
   bgColor: '#dfe6e9',
   subColor: ' #636e72',
   margin1: '100px',

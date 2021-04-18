@@ -14,11 +14,11 @@ const Wrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.6);
 
     > section {
-      width: 450px;
+      width: 600px;
       height: 600px;
       margin: 0 auto;
       border-radius: 30px;
-      background-color: white;
+      background-color: #dfe6e9;
       position: relative;
 
       > .close {
