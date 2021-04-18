@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header, Footer } from '../components/common';
-import CommentInput from '../components/comment/CommentInput';
-import CommentView from '../components/comment/CommentView';
+import Comment from '../components/comment/Comment';
 import { tagStyle } from '../styles/mixins';
 
 const Wrapper = styled.div`
@@ -78,8 +77,7 @@ const PlaceDetail = ({ location }) => {
         </div>
         <div className='comment-inner'>
           <strong>장소 한줄평 남기기</strong>
-          <CommentInput />
-          <CommentView />
+          <Comment />
         </div>
       </div>
       <Footer />
