@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Modal from '../common/Modal';
 import GoogleButton from './GoogleButton';
 import { btnStyle } from '../../styles/mixins';
-import SaveEarthLogo from '../../images/logo192.png';
+import saveEarthLogo from '../../images/logo192.png';
 
 const Wrapper = styled.div`
   margin-left: ${(props) => props.theme.margin1};
@@ -51,7 +51,7 @@ const Login = () => {
       <Modal open={modalOpen} close={closeModal}>
         <div className='login-content'>
           <div className='img-wrap'>
-            <img className='logo-img' src={SaveEarthLogo} alt='세이브어스' />
+            <img className='logo-img' src={saveEarthLogo} alt='세이브어스' />
           </div>
           <h4 className='login-title'>로그인</h4>
           <GoogleButton />

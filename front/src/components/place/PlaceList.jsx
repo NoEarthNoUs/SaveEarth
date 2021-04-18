@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import PlaceData from './PlaceData';
+import PlaceSearch from './PlaceSearch';
 
 const Wrapper = styled.div`
-  border: 1px solid blue;
-  margin-top: ${(props) => props.theme.margin2};
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 300px 300px 300px;
-  gap: 10px;
+  > .place-list {
+    border: 1px solid blue;
+    margin-top: ${(props) => props.theme.margin2};
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 300px 300px 300px;
+    gap: 10px;
+  }
 `;
 
 const PlaceList = () => {
@@ -70,17 +73,20 @@ const PlaceList = () => {
   ];
   return (
     <Wrapper>
-      {placeData.map((data) => (
-        <PlaceData
-          key={data.id}
-          id={data.id}
-          name={data.name}
-          address={data.address}
-          img={data.imgUrl}
-          category={data.category}
-          contents={data.contents}
-        />
-      ))}
+      <PlaceSearch />
+      <div className='place-list'>
+        {placeData.map((data) => (
+          <PlaceData
+            key={data.id}
+            id={data.id}
+            name={data.name}
+            address={data.address}
+            img={data.imgUrl}
+            category={data.category}
+            contents={data.contents}
+          />
+        ))}
+      </div>
     </Wrapper>
   );
 };
