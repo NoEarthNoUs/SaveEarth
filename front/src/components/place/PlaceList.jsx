@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PlaceData from './PlaceData';
-import PlaceSearch from './PlaceSearch';
 
 const Wrapper = styled.div`
   > .place-list {
@@ -73,7 +72,6 @@ const PlaceList = () => {
   ];
   return (
     <Wrapper>
-      <PlaceSearch />
       <div className='place-list'>
         {placeData.map((data) => (
           <PlaceData
