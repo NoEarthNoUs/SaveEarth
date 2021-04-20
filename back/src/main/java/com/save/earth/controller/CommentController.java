@@ -32,7 +32,12 @@ public class CommentController {
     }
 
     @GetMapping("/comment/{placeId}")
-    public List<CommentResponseDto> commentList(@PathVariable(value = "placeId") Long placeId){
-        return commentService.selectComment(placeId);
+    public List<CommentResponseDto> placeCommentList(@PathVariable(value = "placeId") Long placeId){
+        return commentService.selectPlaceComment(placeId);
+    }
+
+    @GetMapping("/comment/user/{userId}")
+    public List<String> userCommentList(@PathVariable(value = "userId") String userId){
+        return commentService.selectUserComment(userId);
     }
 }

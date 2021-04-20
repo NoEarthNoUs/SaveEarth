@@ -44,7 +44,11 @@ public class CommentService {
         comment.changeContents(contents);
     }
 
-    public List<CommentResponseDto> selectComment(Long placeId){
-        return commentRepositoryCustom.findComment(placeId).stream().map(CommentResponseDto::new).collect(Collectors.toList());
+    public List<CommentResponseDto> selectPlaceComment(Long placeId){
+        return commentRepositoryCustom.findPlaceComment(placeId).stream().map(CommentResponseDto::new).collect(Collectors.toList());
+    }
+
+    public List<String> selectUserComment(String userId){
+        return commentRepositoryCustom.findUserComment(userId);
     }
 }
