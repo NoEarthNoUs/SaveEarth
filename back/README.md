@@ -8,3 +8,5 @@
 [6. 에코플레이스, 스토리 상세조회](https://github.com/hwana/TIL/blob/main/SaveEarthProject/select-detail-list.md)<br>
 [7. 유저 정보 데이터베이스에 저장하기](https://github.com/hwana/TIL/blob/main/SaveEarthProject/insert-user.md)<br>
 [8. 댓글 삭제, 수정, 조회, 등록](https://github.com/hwana/TIL/blob/main/SaveEarthProject/comment.md)<br>
+[9. 좋아요 등록, 좋아요 취소](https://github.com/hwana/TIL/blob/main/SaveEarthProject/like.md)<br>
+[10. 마이페이지(내가 작성한 댓글 리스트, 내가 찜한 장소 리스트)](https://github.com/hwana/TIL/blob/main/SaveEarthProject/select-user.md)<br>
