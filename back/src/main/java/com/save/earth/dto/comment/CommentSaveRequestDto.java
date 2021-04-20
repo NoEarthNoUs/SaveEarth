@@ -11,11 +11,4 @@ public class CommentSaveRequestDto {
     private Long placeId;
     private String userId;
 
-//    public Comment toEntity(){
-//        return Comment.builder()
-//                .contents(contents)
-//                .userComment(userId)
-//                .placeComment(placeId)
-//                .build();
-//    }
 }

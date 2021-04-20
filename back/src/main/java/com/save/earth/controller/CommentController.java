@@ -1,6 +1,7 @@
 package com.save.earth.controller;
 
 import com.save.earth.dto.comment.CommentResponseDto;
+import com.save.earth.dto.comment.CommentSaveRequestDto;
 import com.save.earth.dto.comment.CommentUpdateRequestDto;
 import com.save.earth.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +16,10 @@ public class CommentController {
 
     private final CommentService commentService;
 
-//    @PostMapping("/comment")
-//    public void saveComment(CommentSaveRequestDto commentSaveRequestDto){
-//
-//    }
+    @PostMapping("/comment")
+    public void saveComment(@RequestBody CommentSaveRequestDto commentSaveRequestDto){
+        commentService.saveComment(commentSaveRequestDto);
+    }
 
     @PatchMapping("/comment/{commentId}")
     public void updateComment(@PathVariable(value = "commentId") Long id, @RequestBody CommentUpdateRequestDto commentUpdateRequestDto){
