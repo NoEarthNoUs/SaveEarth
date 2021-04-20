@@ -1,5 +1,6 @@
 package com.save.earth.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,9 @@ public class Like {
     @JoinColumn(name = "PLACE_ID")
     private Place placeLike;
 
+    @Builder
+    public Like(User userLike, Place placeLike) {
+        this.userLike = userLike;
+        this.placeLike = placeLike;
+    }
 }
