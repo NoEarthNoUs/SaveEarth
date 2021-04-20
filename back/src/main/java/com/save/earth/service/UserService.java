@@ -1,8 +1,7 @@
 package com.save.earth.service;
 
-import com.save.earth.domain.User;
 import com.save.earth.dto.user.UserSaveRequestDto;
-import com.save.earth.repository.UserRepository;
+import com.save.earth.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

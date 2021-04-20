@@ -5,7 +5,7 @@ import com.save.earth.domain.Place;
 import com.save.earth.domain.User;
 import com.save.earth.dto.comment.CommentResponseDto;
 import com.save.earth.dto.comment.CommentSaveRequestDto;
-import com.save.earth.repository.UserRepository;
+import com.save.earth.repository.user.UserRepository;
 import com.save.earth.repository.comment.CommentRepository;
 import com.save.earth.repository.comment.CommentRepositoryCustom;
 import com.save.earth.repository.place.PlaceRepository;
