@@ -13,11 +13,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
+    QComment qComment = QComment.comment;
+    QUser qUser = QUser.user;
 
-    public List<Comment> findComment(Long placeId){
-        QComment qComment = QComment.comment;
-        QUser qUser = QUser.user;
+    public List<String> findUserComment(String userId){
+        return jpaQueryFactory.select(qComment.contents)
+                .from(qComment)
+                .where(qComment.userComment.id.eq(userId))
+                .fetch();
+    }
 
+    public List<Comment> findPlaceComment(Long placeId){
         return jpaQueryFactory.select(qComment)
             .from(qComment)
             .innerJoin(qComment.userComment, qUser)
