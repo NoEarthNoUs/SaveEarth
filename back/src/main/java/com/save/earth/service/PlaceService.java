@@ -3,7 +3,7 @@ package com.save.earth.service;
 import com.save.earth.dto.place.PlaceDetailResponseDto;
 import com.save.earth.dto.place.PlaceResponseDto;
 import com.save.earth.dto.place.PlaceSaveRequestDto;
-import com.save.earth.repository.PlaceRepository;
+import com.save.earth.repository.place.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

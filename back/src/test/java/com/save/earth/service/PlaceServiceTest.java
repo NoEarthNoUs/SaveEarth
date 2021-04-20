@@ -1,7 +1,7 @@
 package com.save.earth.service;
 
 import com.save.earth.domain.Place;
-import com.save.earth.repository.PlaceRepository;
+import com.save.earth.repository.place.PlaceRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

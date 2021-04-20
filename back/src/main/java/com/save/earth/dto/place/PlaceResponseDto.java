@@ -1,7 +1,6 @@
 package com.save.earth.dto.place;
 
 import com.save.earth.domain.Place;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

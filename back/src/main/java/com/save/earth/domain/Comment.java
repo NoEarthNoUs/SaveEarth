@@ -1,6 +1,7 @@
 package com.save.earth.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,14 @@ public class Comment extends BaseTimeEntity{
     @JoinColumn(name = "PLACE_ID")
     private Place placeComment;
 
-    @Column(columnDefinition = "integer default 0")
-    private int delYn;
+    public void changeContents(String contents){
+        this.contents = contents;
+    }
+
+    @Builder
+    public Comment(String contents, User userComment, Place placeComment) {
+        this.contents = contents;
+        this.userComment = userComment;
+        this.placeComment = placeComment;
+    }
 }
