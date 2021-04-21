@@ -61,11 +61,11 @@ const PlaceUpload = () => {
               <label className='flex-content'>
                 <h4>카테고리 분류</h4>
                 <div className='checks'>
-                  <input type='checkbox' name='식당' value='restaurant' />
+                  <input type='radio' name='categories' value='restaurant' />
                   <span>식당</span>
-                  <input type='checkbox' name='카페' value='cafe' />
+                  <input type='radio' name='categories' value='cafe' />
                   <span>카페</span>
-                  <input type='checkbox' name='소품샵' value='shop' />
+                  <input type='radio' name='categories' value='shop' />
                   <span>소품샵</span>
                 </div>
               </label>
