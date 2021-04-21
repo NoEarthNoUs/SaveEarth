@@ -16,8 +16,8 @@ public class LikeController {
     private final LikeService likeService;
 
     @PostMapping("/like")
-    public void like(@RequestBody LikeSaveRequestDto likeSaveRequestDto){
-        likeService.like(likeSaveRequestDto);
+    public int like(@RequestBody LikeSaveRequestDto likeSaveRequestDto){
+        return likeService.like(likeSaveRequestDto);
     }
 
     @GetMapping("/like/{userId}")

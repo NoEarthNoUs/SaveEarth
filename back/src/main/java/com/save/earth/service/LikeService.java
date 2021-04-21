@@ -26,16 +26,19 @@ public class LikeService {
     private final UserRepository userRepository;
     private final LikeRepositoryCustom likeRepositoryCustom;
 
-    public void like(LikeSaveRequestDto likeSaveRequestDto){
+    public int like(LikeSaveRequestDto likeSaveRequestDto){
         Long likeId = likeRepositoryCustom.findLikeByUserIdAndPlaceId(likeSaveRequestDto.getUserId(), likeSaveRequestDto.getPlaceId());
-
+        int likeFlag = 0;
         if(likeId == null){
             Place place = placeRepository.getOne(likeSaveRequestDto.getPlaceId());
             User user = userRepository.getOne(likeSaveRequestDto.getUserId());
             likeRepository.save(Like.builder().placeLike(place).userLike(user).build());
+            likeFlag = 1;
         }else{
             likeRepository.deleteById(likeId);
+            likeFlag = 0;
         }
+        return likeFlag;
     }
 
     public List<LikeResponseDto> userLikeList(String userId){

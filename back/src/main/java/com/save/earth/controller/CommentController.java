@@ -5,6 +5,8 @@ import com.save.earth.dto.comment.CommentSaveRequestDto;
 import com.save.earth.dto.comment.CommentUpdateRequestDto;
 import com.save.earth.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +34,14 @@ public class CommentController {
     }
 
     @GetMapping("/comment/{placeId}")
-    public List<CommentResponseDto> placeCommentList(@PathVariable(value = "placeId") Long placeId){
-        return commentService.selectPlaceComment(placeId);
+    public List<CommentResponseDto> placeCommentList(@PathVariable(value = "placeId") Long placeId,
+                                                     @PageableDefault Pageable pageable){
+        return commentService.selectPlaceComment(placeId, pageable);
     }
 
     @GetMapping("/comment/user/{userId}")
-    public List<String> userCommentList(@PathVariable(value = "userId") String userId){
-        return commentService.selectUserComment(userId);
+    public List<String> userCommentList(@PathVariable(value = "userId") String userId,
+                                        @PageableDefault Pageable pageable){
+        return commentService.selectUserComment(userId, pageable);
     }
 }

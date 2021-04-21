@@ -5,11 +5,12 @@ import com.save.earth.domain.Place;
 import com.save.earth.domain.User;
 import com.save.earth.dto.comment.CommentResponseDto;
 import com.save.earth.dto.comment.CommentSaveRequestDto;
-import com.save.earth.repository.user.UserRepository;
 import com.save.earth.repository.comment.CommentRepository;
 import com.save.earth.repository.comment.CommentRepositoryCustom;
 import com.save.earth.repository.place.PlaceRepository;
+import com.save.earth.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,11 +45,11 @@ public class CommentService {
         comment.changeContents(contents);
     }
 
-    public List<CommentResponseDto> selectPlaceComment(Long placeId){
-        return commentRepositoryCustom.findPlaceComment(placeId).stream().map(CommentResponseDto::new).collect(Collectors.toList());
+    public List<CommentResponseDto> selectPlaceComment(Long placeId, Pageable pageable){
+        return commentRepositoryCustom.findPlaceComment(placeId, pageable).stream().map(CommentResponseDto::new).collect(Collectors.toList());
     }
 
-    public List<String> selectUserComment(String userId){
-        return commentRepositoryCustom.findUserComment(userId);
+    public List<String> selectUserComment(String userId, Pageable pageable){
+        return commentRepositoryCustom.findUserComment(userId, pageable);
     }
 }
