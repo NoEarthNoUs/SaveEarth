@@ -35,6 +35,7 @@ public class Place {
     private String contents;
 
     @NotNull
+    @Column(columnDefinition = "integer default 0")
     private int allMenuVegan;
 
     @OneToMany(mappedBy = "placeComment")

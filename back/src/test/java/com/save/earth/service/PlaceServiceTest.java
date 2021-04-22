@@ -10,8 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -38,5 +39,17 @@ public class PlaceServiceTest {
 
         //then
         assertEquals(name, placeList.get(0).getName());
+    }
+
+    @Test
+    public void 아이디로_에코플레이스_찾기() throws Exception{
+        //given
+        Long id = 1L;
+
+        //when
+        Optional<Place> findById = placeRepository.findById(id);
+
+        //then
+        assertEquals(id, findById.get().getId());
     }
 }
