@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PlaceDetailResponseDto {
+    private Long id;
     private String name;
     private String address;
     private String imgUrl;
@@ -15,6 +16,7 @@ public class PlaceDetailResponseDto {
     private int allMenuVegan;
 
     public PlaceDetailResponseDto(Place place) {
+        this.id = place.getId();
         this.name = place.getName();
         this.address = place.getAddress();
         this.imgUrl = place.getImgUrl();
