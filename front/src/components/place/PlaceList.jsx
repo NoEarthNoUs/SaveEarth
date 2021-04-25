@@ -4,9 +4,10 @@ import PlaceData from './PlaceData';
 import axios from 'axios';
 
 const Wrapper = styled.div`
-  .error-message {
+  > .error-message {
     text-align: center;
   }
+
   > .place-list {
     border: 1px solid blue;
     margin-top: ${(props) => props.theme.margin2};
@@ -39,9 +40,11 @@ const PlaceList = () => {
 
   if (error)
     return (
-      <div className='error-messege'>
-        로딩하는 과정에서 에러가 발생했습니다😭
-      </div>
+      <Wrapper>
+        <div className='error-messege'>
+          로딩하는 과정에서 에러가 발생했습니다😭
+        </div>
+      </Wrapper>
     );
   if (!places) return null;
 
