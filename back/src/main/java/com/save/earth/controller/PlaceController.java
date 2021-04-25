@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class PlaceController {
     private final PlaceService placeService;
 
     @PostMapping("/api/place")
-    public void save(PlaceSaveRequestDto placeSaveRequestDto, @RequestParam("img") MultipartFile file){
+    public void save(PlaceSaveRequestDto placeSaveRequestDto, @RequestParam("img") MultipartFile file) throws IOException {
         placeService.savePlace(placeSaveRequestDto, file);
     }
 

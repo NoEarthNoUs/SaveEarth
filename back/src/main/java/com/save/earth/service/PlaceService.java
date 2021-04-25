@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,15 +19,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlaceService {
     private final PlaceRepository placeRepository;
+    private final S3Service s3Service;
 
     public void savePlace(PlaceSaveRequestDto placeSaveRequestDto, MultipartFile file){
         try {
-            String baseDir = "C:\\dev\\SaveEarth\\back\\src\\main\\resources\\static\\img";
-            String filePath = baseDir + "\\" + file.getOriginalFilename();
-            file.transferTo(new File(filePath));
 
-            placeSaveRequestDto.setImgUrl(filePath);
+            String imgPath = s3Service.upload(file);
+            placeSaveRequestDto.setImgUrl(imgPath);
+
             placeRepository.save(placeSaveRequestDto.toEntity());
+
         }catch(Exception e){
             e.printStackTrace();
         }
