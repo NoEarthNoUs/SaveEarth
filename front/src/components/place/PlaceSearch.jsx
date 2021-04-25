@@ -28,11 +28,16 @@ const Wrapper = styled.div`
 `;
 
 const PlaceSearch = () => {
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <Wrapper>
       <input
         type='text'
         placeholder='가고 싶은 에코 플레이스를 검색해보세요!'
+        onChange={handleChange}
       ></input>
       <button>검색</button>
     </Wrapper>

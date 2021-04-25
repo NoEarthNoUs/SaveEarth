@@ -46,7 +46,7 @@ const PlaceUpload = () => {
     <Wrapper>
       <button onClick={openModal}>등록하러 가기</button>
       <Modal open={modalOpen} close={closeModal}>
-        <div className='upload-place'>
+        <form className='upload-place'>
           <div className='search-place flex-content'>
             <h4>장소 검색</h4>
             <button>장소 검색하기</button>
@@ -93,7 +93,7 @@ const PlaceUpload = () => {
           <div className='upload-btn'>
             <button>등록하기</button>
           </div>
-        </div>
+        </form>
       </Modal>
     </Wrapper>
   );
