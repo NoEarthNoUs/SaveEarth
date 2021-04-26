@@ -1,31 +1,42 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
-import axios from 'axios';
-
-const clientId =
-  '998436492117-me9tqubklkoqg84077la4imvgvbnpct1.apps.googleusercontent.com';
+import React from "react";
+import GoogleLogin from "react-google-login";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function GoogleButton({ onGoogle }) {
+  const history = useHistory();
   const onSuccess = async (response) => {
     console.log(response);
-
     const {
       googleId,
-      profileObj: { email, name, picture },
+      profileObj: { email, name, imageUrl },
     } = response;
-
-    const userData = {
-      id: googleId,
-      email,
-      nickname: name,
-      imgUrl: picture,
-    };
-    await onGoogle(userData);
-
-    axios.post(
-      'http://ec2-3-37-3-101.ap-northeast-2.compute.amazonaws.com:8081/api/user',
-      userData
-    );
+    try {
+      // 회원 가입 유저 확인을 위한 조회
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/api/user/${googleId}`
+      );
+      // 회원 테이블에 없으면 회원 가입하기
+      console.log("user-info", res);
+      if (!res.id) {
+        const userData = {
+          id: googleId,
+          email,
+          nickname: name,
+          imgUrl: imageUrl,
+        };
+        await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/api/user`,
+          userData
+        );
+      }
+      // 로컬 스토리지에 유저 정보 저장
+      localStorage.setItem("USER_TOKEN", googleId);
+      history.push("/");
+    } catch (e) {
+      console.log("유저 정보 조회 에러");
+      console.error(e);
+    }
   };
 
   const onFailure = (error) => {
@@ -35,8 +46,8 @@ export default function GoogleButton({ onGoogle }) {
   return (
     <div>
       <GoogleLogin
-        clientId={clientId}
-        responseType={'id_token'}
+        clientId={`${process.env.REACT_APP_GOOGLE_ID}`}
+        responseType={"id_token"}
         onSuccess={onSuccess}
         onFailure={onFailure}
       />
