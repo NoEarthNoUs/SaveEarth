@@ -60,7 +60,7 @@ const Main = () => {
       </div>
       <div className='place-overview'>
         <CategoryNav />
-        <PlaceList />
+        {/* <PlaceList /> */}
         <div className='more-btn'>
           <Link to='/place'>
             <button>더 알아보기</button>

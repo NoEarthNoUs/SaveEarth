@@ -27,9 +27,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlaceSearch = () => {
+const PlaceSearch = (props) => {
   const handleChange = (e) => {
-    console.log(e.target.value);
+    props.onSearchInput(e.target.value);
   };
 
   return (
@@ -38,6 +38,7 @@ const PlaceSearch = () => {
         type='text'
         placeholder='가고 싶은 에코 플레이스를 검색해보세요!'
         onChange={handleChange}
+        value={props.ss}
       ></input>
       <button>검색</button>
     </Wrapper>
