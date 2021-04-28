@@ -21,6 +21,7 @@ public class Story extends CreateTimeEntity{
     private String title;
 
     @NotNull
+    @Lob
     private String contents;
 
     @NotNull
