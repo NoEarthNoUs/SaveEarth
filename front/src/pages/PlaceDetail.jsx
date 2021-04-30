@@ -1,8 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import { Header, Footer } from '../components/common';
 import Comment from '../components/comment/Comment';
 import { tagStyle } from '../styles/mixins';
+import axios from 'axios';
+
+const Map = css`
+  border: 1px solid red;
+  margin-top: ${(props) => props.theme.margin3};
+  width: 100%;
+  height: 250px;
+`;
 
 const Wrapper = styled.div`
   border: 1px solid red;
@@ -12,7 +20,7 @@ const Wrapper = styled.div`
   }
 
   .place-detail-wrap {
-    padding: 0 250px;
+    padding: 0 10%;
 
     .place-inner {
       border: 1px solid blue;
@@ -20,7 +28,12 @@ const Wrapper = styled.div`
       display: flex;
       justify-content: space-between;
 
+      img {
+        width: 70%;
+      }
+
       > .place-desc {
+        margin-left: ${(props) => props.theme.margin2};
         border: 1px solid green;
 
         > .place-category {
@@ -28,7 +41,7 @@ const Wrapper = styled.div`
         }
         > .place-name {
           font-weight: bold;
-          font-size: ${(props) => props.theme.detailTitle};
+          font-size: 30px;
 
           &:after {
             content: '';
@@ -42,8 +55,9 @@ const Wrapper = styled.div`
         > .place-info-box {
           margin-top: ${(props) => props.theme.margin3};
         }
-        > .map-thumbnail {
-          margin-top: ${(props) => props.theme.margin3};
+
+        #map-overview {
+          ${Map}
         }
       }
     }
@@ -55,8 +69,52 @@ const Wrapper = styled.div`
   }
 `;
 
+const { kakao } = window;
+
 const PlaceDetail = ({ location }) => {
   const place = location.state;
+  const [detailInfo, setDetailInfo] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/place/${place.id}`)
+      .then((response) => {
+        setDetailInfo(response.data);
+      });
+  }, []);
+
+  const MapContainer = () => {
+    useEffect(() => {
+      // 지도를 표시할 div
+      const container = document.getElementById('map-overview');
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        lever: 3,
+      };
+      // 지도 생성
+      const map = new kakao.maps.Map(container, options);
+      // 주소-좌표 변환 객체 생성
+      const geocoder = new kakao.maps.services.Geocoder();
+
+      // 주소로 좌표를 검색
+      geocoder.addressSearch(detailInfo.address, function (result, status) {
+        // 검색이 정상적으로 완료되면
+        if (status === kakao.maps.services.Status.OK) {
+          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          // 결과값으로 받은 위치를 마커에 표시함
+          var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+          });
+
+          map.setCenter(coords);
+        }
+      });
+    }, []);
+
+    return <div id='map-overview'></div>;
+  };
+
   return (
     <Wrapper>
       <Header />
@@ -68,11 +126,11 @@ const PlaceDetail = ({ location }) => {
             <h1 className='place-name'>{place.name}</h1>
             <div className='place-info-box'>
               <strong className='place-info'>특징</strong>
-              <p>{place.contents}</p>
+              <p>{detailInfo.contents}</p>
               <strong className='place-info'>주소</strong>
-              <p>{place.address}</p>
+              <p>{detailInfo.address}</p>
             </div>
-            <div className='map-thumbnail'>카카오 맵 미리보기</div>
+            <MapContainer />
           </div>
         </div>
         <div className='comment-inner'>
