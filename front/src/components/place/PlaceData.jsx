@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlaceData = ({ id, name, address, img, category, contents }) => {
+const PlaceData = ({ id, name, img, category }) => {
   return (
     <Wrapper>
       <Link
@@ -52,10 +52,8 @@ const PlaceData = ({ id, name, address, img, category, contents }) => {
           state: {
             id,
             name,
-            address,
             img,
             category,
-            contents,
           },
         }}
       >

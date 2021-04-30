@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { PlaceList, PlaceUpload } from '../place';
 import CategoryNav from './CategoryNav';
 import { btnStyle } from '../../styles/mixins';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   border: 1px solid green;
@@ -49,6 +50,16 @@ const Wrapper = styled.div`
   }
 `;
 const Main = () => {
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/place`)
+      .then((response) => {
+        setPlaces(response.data);
+      });
+  }, []);
+
   return (
     <Wrapper>
       <div className='intro'>
@@ -60,7 +71,7 @@ const Main = () => {
       </div>
       <div className='place-overview'>
         <CategoryNav />
-        {/* <PlaceList /> */}
+        <PlaceList places={places.slice(0, 6)} />
         <div className='more-btn'>
           <Link to='/place'>
             <button>더 알아보기</button>
