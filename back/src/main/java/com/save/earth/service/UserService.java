@@ -1,6 +1,7 @@
 package com.save.earth.service;
 
 import com.save.earth.domain.User;
+import com.save.earth.dto.user.UserResponseDto;
 import com.save.earth.dto.user.UserSaveRequestDto;
 import com.save.earth.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,13 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void saveUser(UserSaveRequestDto userSaveRequestDto){
-        userSaveRequestDto.setId("123456789765432");
         userRepository.save(userSaveRequestDto.toEntity());
     }
 
-    public String selectUser(String userId){
+    public UserResponseDto selectUser(String userId){
         Optional<User> user = userRepository.findById(userId);
         if(user.isPresent()){
-            return user.get().getId();
+            return user.map(UserResponseDto::new).get();
         }else{
             return null;
         }

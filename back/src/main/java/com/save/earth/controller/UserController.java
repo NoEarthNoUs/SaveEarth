@@ -1,5 +1,6 @@
 package com.save.earth.controller;
 
+import com.save.earth.dto.user.UserResponseDto;
 import com.save.earth.dto.user.UserSaveRequestDto;
 import com.save.earth.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/api/user/{userId}")
-    public String getUser(@PathVariable("userId") String userId){
+    public UserResponseDto getUser(@PathVariable("userId") String userId){
         return userService.selectUser(userId);
     }
 }
