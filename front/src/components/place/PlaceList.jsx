@@ -44,4 +44,9 @@ const PlaceList = (props) => {
   );
 };
 
+PlaceList.defaultProps = {
+  ss: "",
+  filteredPlaces: [],
+  places: [],
+};
 export default PlaceList;
