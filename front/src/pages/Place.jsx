@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Header, Footer } from '../components/common';
-import { PlaceList, PlaceSearch } from '../components/place';
-import { subPageTitle } from '../styles/mixins';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Header, Footer } from "../components/common";
+import { PlaceList, PlaceSearch } from "../components/place";
+import { subPageTitle } from "../styles/mixins";
+import axios from "axios";
 
 // 플레이스 페이지 css
 const Wrapper = styled.div`
@@ -19,8 +19,9 @@ const Wrapper = styled.div`
 `;
 
 const Place = () => {
+  const [ss, setSs] = useState("");
   const [places, setPlaces] = useState([]);
-  const [ss, setSs] = useState('');
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   useEffect(() => {
     axios
@@ -32,17 +33,21 @@ const Place = () => {
 
   // 이벤트 등록
   const handleSearchInput = (ss) => {
+    const filteredPlaces = places.filter((place) => {
+      return place.name.indexOf(ss) !== -1;
+    });
+    setFilteredPlaces(filteredPlaces);
     setSs(ss);
   };
 
   return (
     <Wrapper>
       <Header />
-      <div className='title'>
+      <div className="title">
         <h1>에코 플레이스 둘러보기</h1>
       </div>
       <PlaceSearch ss={ss} onSearchInput={handleSearchInput} />
-      <PlaceList places={places} ss={ss} />
+      <PlaceList places={places} filteredPlaces={filteredPlaces} ss={ss} />
       <Footer />
     </Wrapper>
   );
