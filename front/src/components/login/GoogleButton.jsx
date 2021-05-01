@@ -3,10 +3,9 @@ import GoogleLogin from "react-google-login";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-export default function GoogleButton({ onGoogle }) {
+const GoogleButton = (props) => {
   const history = useHistory();
   const onSuccess = async (response) => {
-    console.log(response);
     const {
       googleId,
       profileObj: { email, name, imageUrl },
@@ -17,12 +16,11 @@ export default function GoogleButton({ onGoogle }) {
         `${process.env.REACT_APP_SERVER_URL}/api/user/${googleId}`
       );
       // 회원 테이블에 없으면 회원 가입하기
-      console.log("user-info", res);
       if (!res.id) {
         const userData = {
           id: googleId,
           email,
-          nickname: name,
+          name,
           imgUrl: imageUrl,
         };
         await axios.post(
@@ -32,7 +30,7 @@ export default function GoogleButton({ onGoogle }) {
       }
       // 로컬 스토리지에 유저 정보 저장
       localStorage.setItem("USER_TOKEN", googleId);
-      history.push("/");
+      props.close();
     } catch (e) {
       console.log("유저 정보 조회 에러");
       console.error(e);
@@ -53,4 +51,6 @@ export default function GoogleButton({ onGoogle }) {
       />
     </div>
   );
-}
+};
+
+export default GoogleButton;
