@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 
 const Wrapper = styled.div`
   .story-data {
@@ -28,6 +29,11 @@ const Wrapper = styled.div`
 `;
 
 const StoryData = ({ id, title, img, contents, createDateTime }) => {
+  // 스토리 콘텐츠 간략화
+  const innerContents = contents.slice(0, 55);
+  // 태그 제거
+  const newContents = innerContents.replace(/(<([^>]+)>)/gi, '');
+
   return (
     <Wrapper>
       <Link
@@ -46,7 +52,7 @@ const StoryData = ({ id, title, img, contents, createDateTime }) => {
           <img src={img} alt={title} title={title}></img>
           <div className='story-desc'>
             <h4>{title}</h4>
-            <p>{contents.slice(0, 55)}...</p>
+            <p>{newContents}...</p>
           </div>
         </div>
       </Link>

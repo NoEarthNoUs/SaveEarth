@@ -17,26 +17,34 @@ const Wrapper = styled.div`
 `;
 
 const StoryList = () => {
-  const [stories, setStories] = useState(null);
+  const [stories, setStories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const STORYPERPAGE = 6;
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const SIZE = 6;
 
   useEffect(() => {
-    const fetchStories = async () => {
-      setStories(null);
-      const res = await axios.get(
-        `${
-          process.env.REACT_APP_SERVER_URL
-        }/api/story?limit=${STORYPERPAGE}&offset=${currentPage * STORYPERPAGE}`
-      );
-      setStories(res.data);
-    };
-    fetchStories();
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/story`)
+      .then((response) => {
+        setStories(response.data);
+      });
   }, []);
 
   if (!stories) return null;
+
+  const handlePageChange = (pageNum) => {
+    setCurrentPage(pageNum);
+    console.log(pageNum);
+    const fetchNextStories = () => {
+      axios
+        .get(
+          `${process.env.REACT_APP_SERVER_URL}/api/story?page=${
+            pageNum - 1
+          }&size=${SIZE}`
+        )
+        .then((response) => setStories(response.data));
+    };
+    fetchNextStories();
+  };
 
   return (
     <Wrapper>
@@ -52,7 +60,12 @@ const StoryList = () => {
           />
         ))}
       </div>
-      <Pagination />
+      <Pagination
+        items={stories}
+        size={SIZE}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </Wrapper>
   );
 };

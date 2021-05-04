@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header, Footer } from '../components/common';
+import ReactHtmlParser from 'react-html-parser';
 
 const Wrapper = styled.div`
   border: 1px solid red;
@@ -25,10 +26,16 @@ const Wrapper = styled.div`
       > span {
         border: 1px solid blue;
       }
-      > p {
+      > .story-contents {
         border: 1px solid blue;
         margin-top: ${(props) => props.theme.margin3};
         font-size: ${(props) => props.theme.subTitle};
+        > p + p {
+          margin-top: ${(props) => props.theme.margin3};
+        }
+        strong {
+          font-weight: bold;
+        }
       }
     }
   }
@@ -44,7 +51,9 @@ const StoryDetail = ({ location }) => {
         <div className='story-desc'>
           <h1>{story.title}</h1>
           <span>{story.createDateTime}</span>
-          <p>{story.contents}</p>
+          <div className='story-contents'>
+            {ReactHtmlParser(story.contents)}
+          </div>
         </div>
       </div>
       <Footer />
