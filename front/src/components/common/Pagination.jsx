@@ -35,7 +35,6 @@ const Pagination = ({ items, size, currentPage, onPageChange }) => {
   // 아이템 갯수
   const itemsCount = items.length;
   // 몇 페이지가 필요한지 계산
-  console.log(itemsCount);
   const pageCount = Math.ceil(itemsCount / size);
   const pageNumber = Array(pageCount)
     .fill(1)
