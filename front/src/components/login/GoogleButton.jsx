@@ -1,7 +1,7 @@
-import React from "react";
-import GoogleLogin from "react-google-login";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import GoogleLogin from 'react-google-login';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const GoogleButton = (props) => {
   const history = useHistory();
@@ -29,10 +29,10 @@ const GoogleButton = (props) => {
         );
       }
       // 로컬 스토리지에 유저 정보 저장
-      localStorage.setItem("USER_TOKEN", googleId);
+      localStorage.setItem('USER_TOKEN', googleId);
       props.close();
     } catch (e) {
-      console.log("유저 정보 조회 에러");
+      console.log('유저 정보 조회 에러');
       console.error(e);
     }
   };
@@ -45,7 +45,7 @@ const GoogleButton = (props) => {
     <div>
       <GoogleLogin
         clientId={`${process.env.REACT_APP_GOOGLE_ID}`}
-        responseType={"id_token"}
+        responseType={'id_token'}
         onSuccess={onSuccess}
         onFailure={onFailure}
       />

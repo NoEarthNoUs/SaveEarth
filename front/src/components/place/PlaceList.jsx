@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import PlaceData from "./PlaceData";
+import React from 'react';
+import styled from 'styled-components';
+import Pagination from '../common/Pagination';
+import PlaceData from './PlaceData';
 
 const Wrapper = styled.div`
   > .error-message {
@@ -18,10 +19,12 @@ const Wrapper = styled.div`
 `;
 
 const PlaceList = (props) => {
-  const places = props.ss === "" ? props.places : props.filteredPlaces;
+  const places = props.ss === '' ? props.places : props.filteredPlaces;
+  const SIZE = 12;
+
   return (
     <Wrapper>
-      <div className="place-list">
+      <div className='place-list'>
         {places.map((data) => (
           <PlaceData
             key={data.id}
@@ -30,22 +33,23 @@ const PlaceList = (props) => {
             address={data.address}
             img={data.imgUrl}
             category={
-              data.category === "res"
-                ? "식당"
-                : data.category === "cafe"
-                ? "카페"
-                : "소품샵"
+              data.category === 'res'
+                ? '식당'
+                : data.category === 'cafe'
+                ? '카페'
+                : '소품샵'
             }
             // contents={data.contents}
           />
         ))}
       </div>
+      <Pagination items={places} size={SIZE} />
     </Wrapper>
   );
 };
 
 PlaceList.defaultProps = {
-  ss: "",
+  ss: '',
   filteredPlaces: [],
   places: [],
 };
