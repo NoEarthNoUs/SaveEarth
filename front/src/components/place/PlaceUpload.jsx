@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from '../common/Modal';
+import DaumPostcode from 'react-daum-postcode';
+import { tagStyle } from '../../styles/mixins';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -18,11 +20,19 @@ const Wrapper = styled.div`
       border: 1px solid blue;
       h4 {
         font-weight: bold;
-        margin-bottom: ${(props) => props.theme.margin3};
       }
       span + input {
         margin-left: ${(props) => props.theme.margin2};
       }
+    }
+    .search-place {
+      input {
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+    .small-btn {
+      ${tagStyle};
     }
     .upload-btn {
       text-align: center;
@@ -33,6 +43,8 @@ const Wrapper = styled.div`
 
 const PlaceUpload = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [anotherModalOpen, setAnotherModalOpen] = useState(false);
+  const [isAddress, setIsAddress] = useState('');
 
   const openModal = () => {
     setModalOpen(true);
@@ -42,18 +54,63 @@ const PlaceUpload = () => {
     setModalOpen(false);
   };
 
+  const openAnotherModal = (e) => {
+    e.preventDefault();
+    setAnotherModalOpen(true);
+  };
+
+  const closeAnotherModal = () => {
+    setAnotherModalOpen(false);
+  };
+
+  const postCodeStyle = {
+    width: '80%',
+    height: '461px',
+  };
+
+  const handleAddress = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? `(${extraAddress})` : '';
+    }
+    setIsAddress(fullAddress);
+    setAnotherModalOpen(false);
+  };
+
   return (
     <Wrapper>
       <button onClick={openModal}>등록하러 가기</button>
       <Modal open={modalOpen} close={closeModal}>
-        <form className='upload-place'>
+        <div className='upload-place'>
           <div className='search-place flex-content'>
+            <h4>장소 이름</h4>
+            <input
+              className='place-name'
+              type='text'
+              name='address'
+              placeholder='업체의 명칭을 입력해주세요.'
+            />
             <h4>장소 검색</h4>
-            <button>장소 검색하기</button>
+            <button className='small-btn' onClick={openAnotherModal}>
+              장소 검색하기
+            </button>
+            <Modal open={anotherModalOpen} close={closeAnotherModal}>
+              <DaumPostcode style={postCodeStyle} onComplete={handleAddress} />
+            </Modal>
+            <span>{isAddress}</span>
           </div>
           <div className='upload-img flex-content'>
             <h4>사진 첨부</h4>
-            <button>사진 추가하기</button>
+            <button className='small-btn'>사진 추가하기</button>
             <img></img>
           </div>
           <div className='check-category'>
@@ -61,7 +118,7 @@ const PlaceUpload = () => {
               <label className='flex-content'>
                 <h4>카테고리 분류</h4>
                 <div className='checks'>
-                  <input type='radio' name='categories' value='restaurant' />
+                  <input type='radio' name='categories' value='res' />
                   <span>식당</span>
                   <input type='radio' name='categories' value='cafe' />
                   <span>카페</span>
@@ -93,7 +150,7 @@ const PlaceUpload = () => {
           <div className='upload-btn'>
             <button>등록하기</button>
           </div>
-        </form>
+        </div>
       </Modal>
     </Wrapper>
   );

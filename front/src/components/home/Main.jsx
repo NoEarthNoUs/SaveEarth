@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { PlaceList, PlaceUpload } from '../place';
+import PlaceUpload from '../place/PlaceUpload';
 import CategoryNav from './CategoryNav';
 import MainPlaceList from './MainPlaceList';
 import { btnStyle } from '../../styles/mixins';
