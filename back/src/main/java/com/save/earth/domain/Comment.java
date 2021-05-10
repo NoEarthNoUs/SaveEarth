@@ -21,10 +21,12 @@ public class Comment extends BaseTimeEntity{
     @NotNull
     private String contents;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User userComment;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLACE_ID")
     private Place placeComment;

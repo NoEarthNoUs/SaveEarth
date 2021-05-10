@@ -17,12 +17,6 @@ import java.io.IOException;
 public class S3Service {
     private AmazonS3 s3Client;
 
-//    @Value("${cloud.aws.credentials.access-key}")
-//    private String accessKey;
-//
-//    @Value("${cloud.aws.credentials.secret-key}")
-//    private String secretKey;
-
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 

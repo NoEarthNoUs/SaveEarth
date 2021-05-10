@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class User {
     private String id;
 
     @NotNull
+    @Email
     private String email;
 
     @NotNull

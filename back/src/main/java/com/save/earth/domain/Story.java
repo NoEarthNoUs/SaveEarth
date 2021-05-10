@@ -1,6 +1,5 @@
 package com.save.earth.domain;
 
-import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +16,11 @@ public class Story extends CreateTimeEntity{
     @Column(name = "STORY_ID")
     private Long id;
 
-    @NotNull
     private String title;
 
-    @NotNull
     @Lob
     private String contents;
 
-    @NotNull
     private String imgUrl;
 
     @Builder
