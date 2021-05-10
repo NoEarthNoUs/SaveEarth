@@ -47,7 +47,7 @@ const StoryDetail = ({ location }) => {
     <Wrapper>
       <Header />
       <div className='story-inner'>
-        <img src={story.img} alt={story.title} title={story.title}></img>
+        <img src={story.imgUrl} alt={story.title} title={story.title}></img>
         <div className='story-desc'>
           <h1>{story.title}</h1>
           <span>{story.createDateTime}</span>

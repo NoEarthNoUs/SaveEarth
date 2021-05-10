@@ -32,8 +32,8 @@ const Wrapper = styled.div`
           font-size: ${(props) => props.theme.subTitle};
         }
 
-        > .like-btn {
-          > .place-like {
+        .like-btn {
+          .place-like {
             width: 30px;
             height: 30px;
           }
@@ -43,7 +43,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlaceData = ({ id, name, img, category }) => {
+const PlaceData = ({ id, name, imgUrl, category }) => {
+  const toggleLike = () => {
+    alert('좋아요 버튼 클릭');
+  };
+
   return (
     <Wrapper>
       <Link
@@ -52,20 +56,20 @@ const PlaceData = ({ id, name, img, category }) => {
           state: {
             id,
             name,
-            img,
+            imgUrl,
             category,
           },
         }}
       >
         <div className='place-data'>
-          <img src={img} alt={name} title={name}></img>
+          <img src={imgUrl} alt={name} title={name}></img>
           <div className='place-info'>
             <span className='place-tag'>{category}</span>
             <div className='desc-wrap'>
               <h4>{name}</h4>
               <div className='like-btn'>
                 <img
-                  // onClick={toggleLike}
+                  onClick={toggleLike}
                   alt='하트'
                   className='place-like'
                   src={emptyHeartImg}

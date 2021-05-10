@@ -54,7 +54,7 @@ const StoryList = () => {
             key={data.id}
             id={data.id}
             title={data.title}
-            img={data.imgUrl}
+            imgUrl={data.imgUrl}
             contents={data.contents}
             // createDateTime={data.createDateTime}
           />

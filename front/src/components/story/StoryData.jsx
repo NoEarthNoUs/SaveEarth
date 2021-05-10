@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const StoryData = ({ id, title, img, contents, createDateTime }) => {
+const StoryData = ({ id, title, imgUrl, contents, createDateTime }) => {
   // 스토리 콘텐츠 간략화
   const innerContents = contents.slice(0, 55);
   // 태그 제거
@@ -42,14 +42,14 @@ const StoryData = ({ id, title, img, contents, createDateTime }) => {
           state: {
             id,
             title,
-            img,
+            imgUrl,
             contents,
             createDateTime,
           },
         }}
       >
         <div className='story-data'>
-          <img src={img} alt={title} title={title}></img>
+          <img src={imgUrl} alt={title} title={title}></img>
           <div className='story-desc'>
             <h4>{title}</h4>
             <p>{newContents}...</p>

@@ -120,7 +120,7 @@ const PlaceDetail = ({ location }) => {
       <Header />
       <div className='place-detail-wrap'>
         <div className='place-inner'>
-          <img src={place.img} alt={place.name} title={place.name}></img>
+          <img src={place.imgUrl} alt={place.name} title={place.name}></img>
           <div className='place-desc'>
             <span className='place-category'>{place.category}</span>
             <h1 className='place-name'>{place.name}</h1>

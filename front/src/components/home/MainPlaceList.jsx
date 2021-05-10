@@ -33,7 +33,7 @@ const MainPlaceList = (props) => {
             id={data.id}
             name={data.name}
             address={data.address}
-            img={data.imgUrl}
+            imgUrl={data.imgUrl}
             category={
               data.category === 'res'
                 ? '식당'

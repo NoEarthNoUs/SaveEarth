@@ -31,7 +31,7 @@ const PlaceList = (props) => {
             id={data.id}
             name={data.name}
             address={data.address}
-            img={data.imgUrl}
+            imgUrl={data.imgUrl}
             category={
               data.category === 'res'
                 ? '식당'
@@ -39,7 +39,6 @@ const PlaceList = (props) => {
                 ? '카페'
                 : '소품샵'
             }
-            // contents={data.contents}
           />
         ))}
       </div>
