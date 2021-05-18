@@ -49,7 +49,7 @@ const Login = () => {
     setUserId(user_id);
   };
 
-  const signout = () => {
+  const signOut = () => {
     localStorage.removeItem('USER_TOKEN');
     const user_id = localStorage.getItem('USER_TOKEN');
     setUserId(user_id);
@@ -60,7 +60,7 @@ const Login = () => {
       {!userId ? (
         <button onClick={openModal}>Sign In</button>
       ) : (
-        <button onClick={signout}>Sign Out</button>
+        <button onClick={signOut}>Sign Out</button>
       )}
       <Modal open={modalOpen} close={closeModal}>
         <div className='login-content'>
