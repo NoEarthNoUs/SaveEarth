@@ -48,17 +48,13 @@ const Comment = () => {
     [comments]
   );
   // 댓글 수정 기능
-  const onModifyClick = useCallback((id, contents) => {});
-  // const onModify = useCallback(
-  //   (id, contents) => {
-  //     setComments(
-  //       comments.map((comment) =>
-  //         comment.id === id ? { ...comment, contents: contents } : comment
-  //       )
-  //     );
-  //   },
-  //   [comments]
-  // );
+  const onUpdate = useCallback((id, contents) => {
+    setComments(
+      comments.map((comment) =>
+        id === comment.id ? { ...comment, ...contents } : comment
+      )
+    );
+  }, []);
 
   return (
     <Wrapper>
@@ -66,7 +62,7 @@ const Comment = () => {
       <CommentList
         comments={comments}
         onRemove={onRemove}
-        onModifyClick={onModifyClick}
+        onUpdate={onUpdate}
       />
     </Wrapper>
   );

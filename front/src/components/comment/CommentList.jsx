@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentListItem from './CommentListItem';
 
-const CommentList = ({ comments, onRemove, onModifyClick }) => {
+const CommentList = ({ comments, onRemove, onUpdate }) => {
   return (
     <div className='comment-list'>
       {comments.map((comment) => (
@@ -9,7 +9,7 @@ const CommentList = ({ comments, onRemove, onModifyClick }) => {
           comment={comment}
           key={comment.id}
           onRemove={onRemove}
-          onModifyClick={onModifyClick}
+          onUpdate={onUpdate}
         />
       ))}
     </div>

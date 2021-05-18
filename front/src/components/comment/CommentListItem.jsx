@@ -37,10 +37,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const CommentListItem = ({ comment, onRemove, onModifyClick }) => {
+const CommentListItem = ({ comment, onRemove, onUpdate }) => {
   const { id, contents } = comment;
   const userThumbnail =
     'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png';
+
   return (
     <Wrapper>
       <div className='comment-list'>
@@ -48,9 +49,10 @@ const CommentListItem = ({ comment, onRemove, onModifyClick }) => {
         <div className='content'>{contents}</div>
       </div>
       <div className='btn-wrap'>
-        <button className='modify' onClick={() => onModifyClick(id, contents)}>
+        {/* 수정 버튼 비활성화 */}
+        {/* <button className='modify' onClick={() => onUpdate(id, contents)}>
           수정
-        </button>
+        </button> */}
         <button className='delete' onClick={() => onRemove(id)}>
           삭제
         </button>
