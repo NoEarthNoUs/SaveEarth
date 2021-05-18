@@ -4,7 +4,6 @@ import Logo from './Logo';
 import Menu from './Menu';
 
 const Wrapper = styled.footer`
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +15,7 @@ const Wrapper = styled.footer`
 
     > .copyright {
       display: block;
+      margin-left: ${(props) => props.theme.margin3};
     }
   }
 `;

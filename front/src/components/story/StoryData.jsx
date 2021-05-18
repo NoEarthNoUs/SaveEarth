@@ -5,7 +5,6 @@ import ReactHtmlParser from 'react-html-parser';
 
 const Wrapper = styled.div`
   .story-data {
-    border: 1px solid red;
     background-color: ${(props) => props.theme.bgColor};
     padding: 20px 20px;
 
@@ -17,13 +16,11 @@ const Wrapper = styled.div`
     > .story-desc {
       > h4 {
         margin-top: ${(props) => props.theme.margin3};
-        border: 1px solid blue;
         font-weight: bold;
         font-size: ${(props) => props.theme.subTitle};
       }
       > p {
         margin-top: ${(props) => props.theme.margin3};
-        border: 1px solid blue;
       }
     }
   }
@@ -31,7 +28,7 @@ const Wrapper = styled.div`
 
 const StoryData = ({ id, title, imgUrl, contents, createDateTime }) => {
   // 스토리 콘텐츠 간략화
-  const innerContents = contents.slice(0, 60);
+  const innerContents = contents.slice(0, 62);
   // 태그 제거
   const newContents = innerContents.replace(/(<([^>]+)>)/gi, '');
 

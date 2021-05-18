@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-top: ${(props) => props.theme.margin2};
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
 
   .pagination {
     border: 1px solid green;
@@ -66,8 +66,5 @@ const Pagination = ({ items, size, currentPage, onPageChange }) => {
     </Wrapper>
   );
 };
-
-// 1. stories props의 갯수 = 3;
-// 2.
 
 export default Pagination;

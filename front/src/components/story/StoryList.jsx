@@ -5,7 +5,6 @@ import Pagination from '../common/Pagination';
 import axios from 'axios';
 
 const Wrapper = styled.div`
-  border: 1px solid blue;
   margin-top: ${(props) => props.theme.margin2};
 
   > .story-wrap {

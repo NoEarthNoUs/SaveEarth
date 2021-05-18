@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { btnStyle } from "../../styles/mixins";
-import searchIcon from "../../images/search-icon.png";
+import React from 'react';
+import styled from 'styled-components';
+import { btnStyle } from '../../styles/mixins';
+import searchIcon from '../../images/search-icon.png';
 
 const Wrapper = styled.div`
-  border: 1px solid red;
   margin-top: ${(props) => props.theme.margin2};
   text-align: center;
 
@@ -35,8 +34,8 @@ const PlaceSearch = (props) => {
   return (
     <Wrapper>
       <input
-        type="text"
-        placeholder="가고 싶은 에코 플레이스를 검색해보세요!"
+        type='text'
+        placeholder='가고 싶은 에코 플레이스를 검색해보세요!'
         onChange={handleChange}
         value={props.ss}
       ></input>

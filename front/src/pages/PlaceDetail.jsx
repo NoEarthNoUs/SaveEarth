@@ -6,15 +6,12 @@ import { tagStyle } from '../styles/mixins';
 import axios from 'axios';
 
 const Map = css`
-  border: 1px solid red;
   margin-top: ${(props) => props.theme.margin3};
   width: 100%;
   height: 250px;
 `;
 
 const Wrapper = styled.div`
-  border: 1px solid red;
-
   strong {
     font-weight: bold;
   }
@@ -23,7 +20,6 @@ const Wrapper = styled.div`
     padding: 0 10%;
 
     .place-inner {
-      border: 1px solid blue;
       margin-top: ${(props) => props.theme.margin1};
       display: flex;
       justify-content: space-between;
@@ -34,7 +30,6 @@ const Wrapper = styled.div`
 
       > .place-desc {
         margin-left: ${(props) => props.theme.margin2};
-        border: 1px solid green;
 
         > .place-category {
           ${tagStyle}
@@ -63,7 +58,6 @@ const Wrapper = styled.div`
     }
 
     .comment-inner {
-      border: 1px solid red;
       margin-top: ${(props) => props.theme.margin2};
     }
   }

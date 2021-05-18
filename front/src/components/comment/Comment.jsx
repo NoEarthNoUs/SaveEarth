@@ -4,7 +4,6 @@ import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 
 const Wrapper = styled.div`
-  border: 1px solid green;
   margin-top: ${(props) => props.theme.margin3};
 `;
 

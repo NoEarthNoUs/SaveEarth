@@ -4,7 +4,6 @@ import { Logo, Menu } from './';
 import Login from '../login/Login';
 
 const Wrapper = styled.header`
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -7,7 +7,6 @@ import emptyHeartImg from '../../images/empty-heart.png';
 
 const Wrapper = styled.div`
   .place-data {
-    border: 1px solid red;
     background-color: ${(props) => props.theme.bgColor};
     padding: 20px 20px;
 
@@ -27,15 +26,16 @@ const Wrapper = styled.div`
         justify-content: space-between;
 
         > h4 {
-          border: 1px solid blue;
           font-weight: bold;
           font-size: ${(props) => props.theme.subTitle};
+          margin-top: ${(props) => props.theme.margin3};
         }
 
         .like-btn {
           .place-like {
             width: 30px;
             height: 30px;
+            margin-top: ${(props) => props.theme.margin3};
           }
         }
       }

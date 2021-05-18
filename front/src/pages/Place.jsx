@@ -7,8 +7,6 @@ import axios from 'axios';
 
 // 플레이스 페이지 css
 const Wrapper = styled.div`
-  border: 1px solid red;
-
   > .title {
     text-align: center;
 

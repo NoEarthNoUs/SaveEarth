@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { btnStyle } from '../../styles/mixins';
 
 const Nav = styled.nav`
   margin-top: ${(props) => props.theme.margin1};
-  border: 1px solid red;
   display: flex;
   justify-content: center;
 

@@ -8,20 +8,15 @@ import { btnStyle } from '../../styles/mixins';
 import axios from 'axios';
 
 const Wrapper = styled.div`
-  border: 1px solid green;
-
   > .intro {
-    border: 1px solid blue;
     margin-top: ${(props) => props.theme.margin1};
 
     > h1 {
-      border: 1px solid red;
       font-size: 100px;
       font-weight: bold;
       text-align: center;
     }
     > .hero-title {
-      border: 1px solid indigo;
       margin-top: ${(props) => props.theme.margin2};
       font-size: 30px;
       text-align: center;
@@ -36,7 +31,6 @@ const Wrapper = styled.div`
   }
 
   > .place-share {
-    border: 1px solid indigo;
     margin-top: ${(props) => props.theme.margin1};
 
     > h3 {

@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   }
 
   > .place-list {
-    border: 1px solid blue;
     margin-top: ${(props) => props.theme.margin2};
     display: grid;
     justify-content: center;

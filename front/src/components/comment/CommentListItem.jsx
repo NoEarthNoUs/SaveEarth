@@ -9,13 +9,11 @@ const Wrapper = styled.div`
   align-items: center;
 
   .comment-list {
-    border: 1px solid blue;
     display: flex;
     align-items: center;
     max-width: 80%;
 
     img {
-      border: 1px solid blue;
       width: 50px;
       height: 50px;
       margin-right: 30px;
@@ -25,11 +23,8 @@ const Wrapper = styled.div`
   }
 
   .btn-wrap {
-    border: 1px solid green;
-
     button {
       ${btnStyle}
-      border: 1px solid red;
     }
     button + button {
       margin-left: ${(props) => props.theme.margin3};
