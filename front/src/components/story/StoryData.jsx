@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 
     > img {
       width: 100%;
+      height: 160px;
     }
 
     > .story-desc {
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
 
 const StoryData = ({ id, title, imgUrl, contents, createDateTime }) => {
   // 스토리 콘텐츠 간략화
-  const innerContents = contents.slice(0, 55);
+  const innerContents = contents.slice(0, 60);
   // 태그 제거
   const newContents = innerContents.replace(/(<([^>]+)>)/gi, '');
 
@@ -51,7 +52,7 @@ const StoryData = ({ id, title, imgUrl, contents, createDateTime }) => {
         <div className='story-data'>
           <img src={imgUrl} alt={title} title={title}></img>
           <div className='story-desc'>
-            <h4>{title}</h4>
+            <h4>{title.slice(0, 25)}...</h4>
             <p>{newContents}...</p>
           </div>
         </div>
