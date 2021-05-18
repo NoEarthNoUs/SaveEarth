@@ -110,7 +110,9 @@ const PlaceUpload = () => {
           </div>
           <div className='upload-img flex-content'>
             <h4>사진 첨부</h4>
-            <button className='small-btn'>사진 추가하기</button>
+            <input className='small-btn' type='file' accept='image/*'>
+              사진 추가하기
+            </input>
             <img></img>
           </div>
           <div className='check-category'>
