@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Modal from "../common/Modal";
-import DaumPostcode from "react-daum-postcode";
-import { tagStyle } from "../../styles/mixins";
-import axios from "axios";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Modal from '../common/Modal';
+import DaumPostcode from 'react-daum-postcode';
+import { tagStyle } from '../../styles/mixins';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -45,26 +45,59 @@ const Wrapper = styled.div`
 const PlaceUpload = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [anotherModalOpen, setAnotherModalOpen] = useState(false);
-  const [isAddress, setIsAddress] = useState("");
+  const [isAddress, setIsAddress] = useState('');
   const [img, setImage] = useState(null);
 
-  const onClickHandler = (event) => {
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    // 카테고리 라디오 버튼 value 구하기
+    const categories = document.getElementsByName('categories');
+    let categoryValue;
+    for (let i = 0; i < categories.length; i++) {
+      if (categories[i].checked) {
+        categoryValue = categories[i].value;
+      }
+    }
+
+    // 카테고리 상세 체크여부 value 부여하기
+    const categoryDetail = document.getElementById('vegan-check');
+    let veganCheck;
+    if (categoryDetail.checked) {
+      veganCheck = 1;
+    } else {
+      veganCheck = 0;
+    }
+
+    // 폼데이터 생성
     const formData = new FormData();
-    // formData.append(
-    //   "uploadImages",
-    //   this.state.selectedFiles,
-    //   this.state.selectedFiles.name
-    // );
-    // const config = {
-    //   headers: {
-    //     "content-type": "multipart/form-data"
-    //   }
-    // };
-    // axios.post(`uploadAPI`, formData, config);
+    formData.append('name', document.getElementById('place-name').value);
+    formData.append(
+      'address',
+      document.getElementById('place-address').innerHTML
+    );
+    formData.append('category', categoryValue);
+    formData.append('vegan', veganCheck);
+    formData.append(
+      'contents',
+      document.getElementById('place-contents').value
+    );
+
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/api/place`,
+      formData,
+      config
+    );
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/api/place?img=${img}`, img);
   };
-  const fileChangedHandler = (event) => {
-    const files = event.target.files;
-    console.log("files", files);
+
+  const fileChangedHandler = (e) => {
+    const files = e.target.files;
+    console.log('files', files);
     setImage(files);
   };
   const openModal = () => {
@@ -85,23 +118,23 @@ const PlaceUpload = () => {
   };
 
   const postCodeStyle = {
-    width: "80%",
-    height: "461px",
+    width: '80%',
+    height: '461px',
   };
 
   const handleAddress = (data) => {
     let fullAddress = data.address;
-    let extraAddress = "";
+    let extraAddress = '';
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== "") {
+      if (data.buildingName !== '') {
         extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== "" ? `(${extraAddress})` : "";
+      fullAddress += extraAddress !== '' ? `(${extraAddress})` : '';
     }
     setIsAddress(fullAddress);
     setAnotherModalOpen(false);
@@ -111,68 +144,80 @@ const PlaceUpload = () => {
     <Wrapper>
       <button onClick={openModal}>등록하러 가기</button>
       <Modal open={modalOpen} close={closeModal}>
-        <div className="upload-place">
-          <div className="search-place flex-content">
+        <div className='upload-place'>
+          <div className='search-place flex-content'>
             <h4>장소 이름</h4>
             <input
-              className="place-name"
-              type="text"
-              name="address"
-              placeholder="업체의 명칭을 입력해주세요."
+              id='place-name'
+              className='place-name'
+              type='text'
+              name='name'
+              placeholder='업체의 명칭을 입력해주세요. 🙌'
             />
             <h4>장소 검색</h4>
-            <button className="small-btn" onClick={openAnotherModal}>
+            <button className='small-btn' onClick={openAnotherModal}>
               장소 검색하기
             </button>
             <Modal open={anotherModalOpen} close={closeAnotherModal}>
               <DaumPostcode style={postCodeStyle} onComplete={handleAddress} />
             </Modal>
-            <span>{isAddress}</span>
+            <span id='place-address'>{isAddress}</span>
           </div>
-          <div className="upload-img flex-content">
+          <div className='upload-img flex-content'>
             <h4>사진 첨부</h4>
-            {/* <input className='small-btn' type='file' accept='image/*'>
-              사진 추가하기
-            </input> */}
-            <input type="file" multiple onChange={fileChangedHandler} />
-            <button onClick={onClickHandler}>저장하기</button>
+            <input type='file' multiple onChange={fileChangedHandler} />
           </div>
-          <div className="check-category">
-            <form>
-              <label className="flex-content">
+          <div className='check-category'>
+            <form id='place-ctgrs'>
+              <label className='flex-content'>
                 <h4>카테고리 분류</h4>
-                <div className="checks">
-                  <input type="radio" name="categories" value="res" />
+                <div className='checks'>
+                  <input id='res' type='radio' name='categories' value='res' />
                   <span>식당</span>
-                  <input type="radio" name="categories" value="cafe" />
+                  <input
+                    id='cafe'
+                    type='radio'
+                    name='categories'
+                    value='cafe'
+                  />
                   <span>카페</span>
-                  <input type="radio" name="categories" value="shop" />
+                  <input
+                    id='shop'
+                    type='radio'
+                    name='categories'
+                    value='shop'
+                  />
                   <span>소품샵</span>
                 </div>
               </label>
             </form>
           </div>
-          <div className="category-detail">
-            <form className="flex-content">
+          <div className='category-detail'>
+            <form className='flex-content'>
               <label>
                 <h4>카테고리 상세</h4>
               </label>
-              <div className="checks">
-                <input type="checkbox" name="일부 메뉴만 채식" value="1" />
+              <div className='checks'>
+                <input
+                  id='vegan-check'
+                  type='checkbox'
+                  name='일부 메뉴만 채식'
+                />
                 <span>일부 메뉴만 채식</span>
               </div>
             </form>
           </div>
-          <div className="place-intro flex-content">
+          <div className='place-intro flex-content'>
             <h4>특징</h4>
             <textarea
-              rows="5"
-              cols="40"
-              defaultValue="이 장소를 간단하게 소개시켜주세요!🙌"
+              id='place-contents'
+              rows='5'
+              cols='40'
+              placeholder='이 장소를 간단하게 소개시켜주세요! 🙌'
             ></textarea>
           </div>
-          <div className="upload-btn">
-            <button>등록하기</button>
+          <div className='upload-btn'>
+            <button onClick={onClickHandler}>등록하기</button>
           </div>
         </div>
       </Modal>
