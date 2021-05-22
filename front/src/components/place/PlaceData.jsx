@@ -7,7 +7,6 @@ import emptyHeartImg from '../../images/empty-heart.png';
 
 const Wrapper = styled.div`
   .place-data {
-    border: 1px solid red;
     background-color: ${(props) => props.theme.bgColor};
     padding: 20px 20px;
 
@@ -27,15 +26,16 @@ const Wrapper = styled.div`
         justify-content: space-between;
 
         > h4 {
-          border: 1px solid blue;
           font-weight: bold;
           font-size: ${(props) => props.theme.subTitle};
+          margin-top: ${(props) => props.theme.margin3};
         }
 
-        > .like-btn {
-          > .place-like {
+        .like-btn {
+          .place-like {
             width: 30px;
             height: 30px;
+            margin-top: ${(props) => props.theme.margin3};
           }
         }
       }
@@ -43,7 +43,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlaceData = ({ id, name, address, img, category, contents }) => {
+const PlaceData = ({ id, name, imgUrl, category }) => {
+  const toggleLike = () => {
+    alert('좋아요 버튼 클릭');
+  };
+
   return (
     <Wrapper>
       <Link
@@ -52,22 +56,20 @@ const PlaceData = ({ id, name, address, img, category, contents }) => {
           state: {
             id,
             name,
-            address,
-            img,
+            imgUrl,
             category,
-            contents,
           },
         }}
       >
         <div className='place-data'>
-          <img src={img} alt={name} title={name}></img>
+          <img src={imgUrl} alt={name} title={name}></img>
           <div className='place-info'>
             <span className='place-tag'>{category}</span>
             <div className='desc-wrap'>
               <h4>{name}</h4>
               <div className='like-btn'>
                 <img
-                  // onClick={toggleLike}
+                  onClick={toggleLike}
                   alt='하트'
                   className='place-like'
                   src={emptyHeartImg}

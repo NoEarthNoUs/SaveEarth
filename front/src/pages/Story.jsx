@@ -5,8 +5,6 @@ import StoryList from '../components/story/StoryList';
 import { subPageTitle } from '../styles/mixins';
 
 const Wrapper = styled.div`
-  border: 1px solid red;
-
   > .title {
     text-align: center;
 

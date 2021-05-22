@@ -1,26 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { btnStyle } from '../../styles/mixins';
 
 const Nav = styled.nav`
   margin-top: ${(props) => props.theme.margin1};
-  border: 1px solid red;
   display: flex;
   justify-content: center;
 
-  .tags {
+  .categories {
+    cursor: pointer;
     float: left;
-    .categories {
-      ${btnStyle};
+    ${btnStyle};
 
-      &:hover {
-        color: white;
-      }
+    &:hover {
+      color: white;
     }
   }
 
-  .tags + .tags {
+  li + li {
     margin-left: ${(props) => props.theme.margin3};
   }
 
@@ -31,30 +28,29 @@ const Nav = styled.nav`
   }
 `;
 
-const CategoryNav = () => {
+const CategoryNav = (props) => {
+  const handleChange = (e) => {
+    if (e.target.innerHTML === '식당') {
+      return props.onToggle('res');
+    }
+    if (e.target.innerHTML === '카페') {
+      return props.onToggle('cafe');
+    }
+    if (e.target.innerHTML === '소품샵') {
+      return props.onToggle('shop');
+    }
+    if (e.target.innerHTML === '전체') {
+      return props.onToggle('all');
+    }
+  };
+
   return (
     <Nav>
-      <ul>
-        <Link to='/' className='tags'>
-          <li>
-            <span className='categories'>전체</span>
-          </li>
-        </Link>
-        <Link to='/' className='tags'>
-          <li>
-            <span className='categories'>식당</span>
-          </li>
-        </Link>
-        <Link to='/' className='tags'>
-          <li>
-            <span className='categories'>카페</span>
-          </li>
-        </Link>
-        <Link to='/' className='tags'>
-          <li>
-            <span className='categories'>소품샵</span>
-          </li>
-        </Link>
+      <ul onClick={handleChange}>
+        <li className='categories'>전체</li>
+        <li className='categories'>식당</li>
+        <li className='categories'>카페</li>
+        <li className='categories'>소품샵</li>
       </ul>
     </Nav>
   );

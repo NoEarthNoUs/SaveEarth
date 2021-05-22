@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Pagination from '../common/Pagination';
-import PlaceData from './PlaceData';
+import PlaceData from '../place/PlaceData';
 
 const Wrapper = styled.div`
   > .error-message {
@@ -17,9 +16,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlaceList = (props) => {
-  const places = props.ss === '' ? props.places : props.filteredPlaces;
-  const SIZE = 12;
+const MainPlaceList = (props) => {
+  let places = props.ctgrs === '' ? props.places : props.sortedPlaces;
+
+  if (props.ctgrs === 'all') {
+    places = props.places;
+  }
 
   return (
     <Wrapper>
@@ -41,14 +43,14 @@ const PlaceList = (props) => {
           />
         ))}
       </div>
-      <Pagination items={places} size={SIZE} />
     </Wrapper>
   );
 };
 
-PlaceList.defaultProps = {
-  ss: '',
-  filteredPlaces: [],
+MainPlaceList.defaultProps = {
+  ctgr: '',
   places: [],
+  sortedPlaces: [],
 };
-export default PlaceList;
+
+export default MainPlaceList;

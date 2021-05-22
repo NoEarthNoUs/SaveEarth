@@ -1,92 +1,70 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { btnStyle } from '../../styles/mixins';
+import CommentInput from './CommentInput';
+import CommentList from './CommentList';
 
 const Wrapper = styled.div`
-  border: 1px solid green;
   margin-top: ${(props) => props.theme.margin3};
-
-  > .write-comment {
-    display: flex;
-    justify-content: space-between;
-
-    > input {
-      border: 1px solid red;
-      width: 90%;
-      font-size: ${(props) => props.theme.subTitle};
-      background-color: ${(props) => props.theme.bgColor};
-    }
-    > button {
-      ${btnStyle};
-      border: 1px solid red;
-    }
-  }
-  > .view-comment {
-    margin-top: ${(props) => props.theme.margin2};
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .comment-list {
-      border: 1px solid blue;
-      display: flex;
-      align-items: center;
-      max-width: 80%;
-
-      img {
-        border: 1px solid blue;
-        width: 50px;
-        height: 50px;
-        margin-right: 30px;
-      }
-      .content {
-        border: 1px solid blue;
-      }
-    }
-  }
-
-  .btn-wrap {
-    border: 1px solid green;
-
-    button {
-      ${btnStyle}
-      border: 1px solid red;
-    }
-    button + button {
-      margin-left: ${(props) => props.theme.margin3};
-    }
-  }
 `;
 
-const CommentInput = () => {
-  const userThumbnail =
-    'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png';
+const Comment = () => {
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      contents: '와! 너무 대박이에요!',
+    },
+    {
+      id: 2,
+      contents: '친구가 데려가줬는데 좋았어요!',
+    },
+    {
+      id: 3,
+      contents: '저는 직원이 불친절해서 별로였습니다;;',
+    },
+  ]);
+
+  // 고윳값으로 사용될 id
+  // ref를 사용하여 변수 담기
+  const nextId = useRef(4);
+
+  // 댓글 추가 기능
+  const onInput = useCallback(
+    (contents) => {
+      const comment = {
+        id: nextId.current,
+        contents,
+      };
+      setComments(comments.concat(comment));
+      nextId.current += 1;
+    },
+    [comments]
+  );
+  // 댓글 삭제 기능
+  const onRemove = useCallback(
+    (id) => {
+      setComments(comments.filter((comment) => comment.id !== id));
+    },
+    [comments]
+  );
+  // 댓글 수정 기능
+  const onUpdate = useCallback((id, contents) => {
+    setComments(
+      comments.map((comment) =>
+        id === comment.id ? { ...comment, ...contents } : comment
+      )
+    );
+  }, []);
 
   return (
     <Wrapper>
-      <div className='write-comment'>
-        <input type='text' placeholder='댓글을 달아주세요!🙌' />
-        <button type='submit'>등록</button>
-      </div>
-      <div className='view-comment'>
-        <div className='comment-list'>
-          <img src={userThumbnail} alt='유저 프로필 사진' />
-          <div className='content'>
-            댓글 내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나댓글
-            내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나댓글
-            내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나댓글
-            내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나댓글
-            내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나댓글
-            내용가뤼뤼뤼뤼ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리ㅜ리리ㅡㅜ리한나
-          </div>
-        </div>
-        <div className='btn-wrap'>
-          <button className='modify'>수정</button>
-          <button className='delete'>삭제</button>
-        </div>
-      </div>
+      <CommentInput onInput={onInput} />
+      <CommentList
+        comments={comments}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+      />
     </Wrapper>
   );
 };
 
-export default CommentInput;
+export default Comment;

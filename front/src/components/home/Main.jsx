@@ -1,25 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { PlaceList, PlaceUpload } from '../place';
+import PlaceUpload from '../place/PlaceUpload';
 import CategoryNav from './CategoryNav';
+import MainPlaceList from './MainPlaceList';
 import { btnStyle } from '../../styles/mixins';
+import axios from 'axios';
 
 const Wrapper = styled.div`
-  border: 1px solid green;
-
   > .intro {
-    border: 1px solid blue;
     margin-top: ${(props) => props.theme.margin1};
 
     > h1 {
-      border: 1px solid red;
       font-size: 100px;
       font-weight: bold;
       text-align: center;
     }
     > .hero-title {
-      border: 1px solid indigo;
       margin-top: ${(props) => props.theme.margin2};
       font-size: 30px;
       text-align: center;
@@ -34,7 +31,6 @@ const Wrapper = styled.div`
   }
 
   > .place-share {
-    border: 1px solid indigo;
     margin-top: ${(props) => props.theme.margin1};
 
     > h3 {
@@ -49,6 +45,26 @@ const Wrapper = styled.div`
   }
 `;
 const Main = () => {
+  const [places, setPlaces] = useState([]);
+  const [sortedPlaces, setSortedPlaces] = useState([]);
+  const [ctgrs, setCtgrs] = useState('');
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/place`)
+      .then((response) => {
+        setPlaces(response.data);
+      });
+  }, []);
+
+  const handleToggle = (ctgrs) => {
+    const sortedPlaces = places.filter((place) => {
+      return place.category.indexOf(ctgrs) !== -1;
+    });
+    setSortedPlaces(sortedPlaces);
+    setCtgrs(ctgrs);
+  };
+
   return (
     <Wrapper>
       <div className='intro'>
@@ -59,8 +75,20 @@ const Main = () => {
         </h2>
       </div>
       <div className='place-overview'>
-        <CategoryNav />
-        <PlaceList />
+        <CategoryNav onToggle={handleToggle} />
+        <MainPlaceList
+          places={places
+            .sort(function () {
+              return Math.random() - Math.random();
+            })
+            .slice(0, 6)}
+          sortedPlaces={sortedPlaces
+            .sort(function () {
+              return Math.random() - Math.random();
+            })
+            .slice(0, 6)}
+          ctgrs={ctgrs}
+        />
         <div className='more-btn'>
           <Link to='/place'>
             <button>더 알아보기</button>
