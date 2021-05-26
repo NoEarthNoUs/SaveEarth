@@ -5,6 +5,11 @@ plugins {
     id "com.github.node-gradle.node" version "2.2.4"
 }
 
+node {
+    version = '16.2.0'
+    download = true
+}
+
 apply plugin: "io.spring.dependency-management"
 apply plugin: "com.github.node-gradle.node"
 
@@ -70,10 +75,7 @@ sourceSets {
     }
 }
 
-node {
-    version = '16.2.0'
-    download = true
-}
+
 
 processResources { dependsOn "buildReact" }
 
