@@ -2,11 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id "com.github.node-gradle.node" version "2.2.4"
 }
 
 apply plugin: "io.spring.dependency-management"
-apply plugin: "com.github.node-gradle.node"
 
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
@@ -69,11 +67,15 @@ sourceSets {
         }
     }
 }
-processResources { dependsOn "buildReact" }
 
-task appNpmInstall(type: NpmTask) {
-    workingDir = file("${webappDir}")
-    args = ["install"]
+processResources {
+    dependsOn "copyWebApp"
+}
+
+task copyWebApp(type: Copy) {
+    dependsOn "buildReact"
+    from "$webappDir/build"
+    into "$projectDir/src/main/resources/static"
 }
 
 task buildReact(type: Exec) {
@@ -89,13 +91,12 @@ task buildReact(type: Exec) {
 }
 
 task installReact(type: Exec) {
-    dependsOn "appNpmInstall"
     workingDir "$webappDir"
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine "yarn.cmd", "audit", "fix"
-        commandLine 'yarn.cmd', 'install'
+        commandLine "npm.cmd", "audit", "fix"
+        commandLine 'npm.cmd', 'install'
     } else {
         commandLine "npm", "audit", "fix"
         commandLine 'npm', 'install'
