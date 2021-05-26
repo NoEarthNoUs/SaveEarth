@@ -76,7 +76,7 @@ processResources { dependsOn "buildReact" }
 
 task appNpmInstall(type: NpmTask) {
     workingDir = file("${webappDir}")
-    args = ["run", "build"]
+    args = ["install"]
 }
 
 task buildReact(type: Exec) {
