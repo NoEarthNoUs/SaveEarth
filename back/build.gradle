@@ -2,11 +2,11 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-//    id "com.github.node-gradle.node" version "2.2.4"
+    id "com.github.node-gradle.node" version "2.2.4"
 }
 
 apply plugin: "io.spring.dependency-management"
-//apply plugin: "com.github.node-gradle.node"
+apply plugin: "com.github.node-gradle.node"
 
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
@@ -60,6 +60,7 @@ task cleanGeneatedDir(type: Delete) {
     delete file('src/main/generated')
 }
 
+
 def webappDir = "$projectDir/front"
 sourceSets {
     main {
@@ -67,6 +68,11 @@ sourceSets {
             srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
         }
     }
+}
+
+node {
+    version = '16.2.0'
+    download = true
 }
 
 processResources { dependsOn "buildReact" }
