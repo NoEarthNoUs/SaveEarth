@@ -2,10 +2,11 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id "com.github.node-gradle.node" version "2.2.3"
+    id "com.moowork.node" version "1.3.1"
 }
 
 apply plugin: "io.spring.dependency-management"
+apply plugin: "com.moowork.node"
 
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
@@ -45,6 +46,7 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 clean {
@@ -58,45 +60,58 @@ task cleanGeneatedDir(type: Delete) {
     delete file('src/main/generated')
 }
 
+//def webappDir = "$projectDir/front"
+//sourceSets {
+//    main {
+//        resources {
+//            srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
+//        }
+//    }
+//}
+//
+//processResources { dependsOn "buildReact" }
+//
+//task buildReact(type: Exec) {
+//    dependsOn "installReact"
+//    workingDir "$webappDir"
+//    inputs.dir "$webappDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "npm.cmd", "run-script", "build"
+//    } else {
+//        commandLine "npm", "run-script", "build"
+//    }
+//}
+//
+//task installReact(type: Exec) {
+//    workingDir "$webappDir"
+//    inputs.dir "$webappDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "yarn.cmd", "audit", "fix"
+//        commandLine 'yarn.cmd', 'install'
+//    } else {
+//        commandLine "npm", "audit", "fix"
+//        commandLine 'npm', 'install'
+//    }
+//}
+
 def webappDir = "$projectDir/front"
-sourceSets {
-    main {
-        resources {
-            srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
-        }
-    }
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${webappDir}")
+    args = ["run", "build"]
 }
 
-processResources { dependsOn "buildReact" }
-
-task buildReact(type: Exec) {
-    dependsOn "installReact"
-    workingDir "$webappDir"
-    inputs.dir "$webappDir"
-    group = BasePlugin.BUILD_GROUP
-    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine "npm.cmd", "run-script", "build"
-    } else {
-        commandLine "npm", "run-script", "build"
-    }
+task copyWebApp(type: Copy) {
+    from 'front/build'
+    into "build/resources/main/static"
 }
 
-task installReact(type: Exec) {
-    workingDir "$webappDir"
-    inputs.dir "$webappDir"
-    group = BasePlugin.BUILD_GROUP
-    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine "yarn.cmd", "audit", "fix"
-        commandLine 'yarn.cmd', 'install'
-    } else {
-        commandLine "npm", "audit", "fix"
-        commandLine 'npm', 'install'
-    }
-}
-
+copyWebApp.dependsOn(appNpmInstall)
+compileJava.dependsOn(copyWebApp)
 
 test {
     useJUnitPlatform()
 }
-
 
