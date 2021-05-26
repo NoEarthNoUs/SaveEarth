@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "com.github.node-gradle.node" version "2.2.3"
 }
 
 apply plugin: "io.spring.dependency-management"
@@ -28,7 +29,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-
 
     implementation("com.querydsl:querydsl-core")
     implementation("com.querydsl:querydsl-jpa")
@@ -89,8 +89,8 @@ task installReact(type: Exec) {
         commandLine "yarn.cmd", "audit", "fix"
         commandLine 'yarn.cmd', 'install'
     } else {
-        commandLine "npm.cmd", "audit", "fix"
-        commandLine 'npm.cmd', 'install'
+        commandLine "npm", "audit", "fix"
+        commandLine 'npm', 'install'
     }
 }
 
