@@ -2,11 +2,11 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id "com.moowork.node" version "1.3.1"
+    id "com.github.node-gradle.node" version "2.2.4"
 }
 
 apply plugin: "io.spring.dependency-management"
-apply plugin: "com.moowork.node"
+apply plugin: "com.github.node-gradle.node"
 
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
@@ -104,8 +104,8 @@ task appNpmInstall(type: NpmTask) {
 }
 
 task copyWebApp(type: Copy) {
-    from 'front/build'
-    into "build/resources/main/static"
+    from "$webappDir/build"
+    into "build/resources/main/"
 }
 
 copyWebApp.dependsOn(appNpmInstall)
