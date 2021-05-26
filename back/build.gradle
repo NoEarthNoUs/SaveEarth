@@ -8,11 +8,6 @@ plugins {
 apply plugin: "io.spring.dependency-management"
 apply plugin: "com.github.node-gradle.node"
 
-node {
-    nodeModulesDir = file("${projectDir}/back/front")
-    download = true
-}
-
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -78,6 +73,11 @@ sourceSets {
 
 
 processResources { dependsOn "buildReact" }
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${webappDir}")
+    args = ["run", "build"]
+}
 
 task buildReact(type: Exec) {
     dependsOn "installReact"
