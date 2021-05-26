@@ -5,13 +5,13 @@ plugins {
     id "com.github.node-gradle.node" version "2.2.4"
 }
 
-node {
-    version = '16.2.0'
-    download = true
-}
-
 apply plugin: "io.spring.dependency-management"
 apply plugin: "com.github.node-gradle.node"
+
+node {
+    nodeModulesDir = file("${projectDir}/back/front")
+    download = true
+}
 
 group = 'com.save.earth'
 version = '0.0.1-SNAPSHOT'
