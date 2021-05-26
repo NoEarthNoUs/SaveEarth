@@ -69,9 +69,6 @@ sourceSets {
         }
     }
 }
-
-
-
 processResources { dependsOn "buildReact" }
 
 task appNpmInstall(type: NpmTask) {
@@ -92,6 +89,7 @@ task buildReact(type: Exec) {
 }
 
 task installReact(type: Exec) {
+    dependsOn "appNpmInstall"
     workingDir "$webappDir"
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
