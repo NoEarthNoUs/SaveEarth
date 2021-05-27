@@ -51,15 +51,12 @@ clean {
     delete file('src/main/generated') // 인텔리제이 Annotation processor 생성물 생성위치
 }
 
-/**
- * 인텔리제이 Annotation processor 에 생성되는 'src/main/generated' 디렉터리 삭제
- */
 task cleanGeneatedDir(type: Delete) {
     delete file('src/main/generated')
 }
 
-
 def webappDir = "$projectDir/front"
+
 sourceSets {
     main {
         resources {
@@ -102,21 +99,6 @@ task installReact(type: Exec) {
         commandLine 'npm', 'install'
     }
 }
-
-//def webappDir = "$projectDir/front"
-//
-//task appNpmInstall(type: NpmTask) {
-//    workingDir = file("${webappDir}")
-//    args = ["run", "build"]
-//}
-//
-//task copyWebApp(type: Copy) {
-//    from "$webappDir/build"
-//    into "build/resources/main/"
-//}
-//
-//copyWebApp.dependsOn(appNpmInstall)
-//compileJava.dependsOn(copyWebApp)
 
 test {
     useJUnitPlatform()
