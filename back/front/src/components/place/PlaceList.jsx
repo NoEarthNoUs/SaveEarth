@@ -24,23 +24,22 @@ const PlaceList = (props) => {
   return (
     <Wrapper>
       <div className='place-list'>
-        {places &&
-          places.map((data) => (
-            <PlaceData
-              key={data.id}
-              id={data.id}
-              name={data.name}
-              address={data.address}
-              imgUrl={data.imgUrl}
-              category={
-                data.category === 'res'
-                  ? '식당'
-                  : data.category === 'cafe'
-                  ? '카페'
-                  : '소품샵'
-              }
-            />
-          ))}
+        {places.map((data) => (
+          <PlaceData
+            key={data.id}
+            id={data.id}
+            name={data.name}
+            address={data.address}
+            imgUrl={data.imgUrl}
+            category={
+              data.category === 'res'
+                ? '식당'
+                : data.category === 'cafe'
+                ? '카페'
+                : '소품샵'
+            }
+          />
+        ))}
       </div>
       <Pagination items={places} size={SIZE} />
     </Wrapper>
