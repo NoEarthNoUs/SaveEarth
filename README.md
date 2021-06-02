@@ -22,15 +22,33 @@ Save Earth와 함께 지구를 지켜요! 🙌🌏💪
 - 제로 웨이스트 라이프에 관심이 있는 사람
 - 채식주의자
 
-## 🌏 실행 방법
+## 🌏 사이트
+
+<http://saveearth.shop/>
+
+## ⏰ 개발 기간
+
+- 2021.04 ~ 2021.05
+- 계속해서 기능 추가 예정 💬
 
 ## ⚙️ 기술 스택
 
-- 프론트
-  - react
-- 백
-  - mysql
-  - Java, Spring Boot
+- Front
+
+  - HTML
+  - CSS
+  - JavaScript
+  - React
+  - KAKAO API
+  - Google OAuth
+
+- Back
+
+  - JAVA
+  - Spring Boot
+  - JPA
+  - MySQL
+  - AWS(EC2, S3, RDS)
 
 ## 🤓 기획 및 설계
 
